@@ -3,11 +3,10 @@ import Button from './Button';
 
 export default function Nav() {
    let Links =[ 
-      {name:"HOME", link:"/"},
-      {name:"ABOUT", link:"/"},
-      {name:"SERVICE", link:"/"},
-      {name:"BLOG", link:"/"},
-      {name:"CONTACT", link:"/"},
+      {name:"HOME", link:"#section1"},
+      {name:"ABOUT", link:"#section4"},
+      {name:"SERVICES", link:"#section2"},
+      {name:"CONTACT", link:"#section5"},
    ];
    let [open, setOpen] = useState(false);
    return(
@@ -17,7 +16,7 @@ export default function Nav() {
           <span className='text-3xl text-indigo-600 mr-1 pt-2'>
           <ion-icon name="bug"></ion-icon>
           </span>
-          Designer
+          RTcleByte
           </div>
 
           <div onClick={()=>setOpen(!open)} className='text-3xl absolute right-8 top-6 cursor-pointer md:hidden'>
@@ -31,12 +30,13 @@ export default function Nav() {
                </li>
             ))
             }
+            <Button>
+            Log in
+          </Button>
           <Button>
             Get Started
           </Button>
-          <Button>
-            Read more
-          </Button>
+          
           </ul>
           </div>
           </div>

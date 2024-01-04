@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav1 from './compenents/Nav1';
 import Recherche from './compenents/Recherche';
-import Dem3a from './compenents/Dem3a';
+import Home from './compenents/Home';
 import Form from './compenents/Form';
 import Inscription from './compenents/Form';
 
@@ -17,18 +17,17 @@ import './App.css';
 }*/
 
 
-/*function App() {
+function App() {
   return (
     <>
-    <Nav1 user={{ name: 'derr', fullName: 'John Doe' }} />
-      <Recherche />
-      <Dem3a /> 
+    <Home />
+      
     </>
     
   );
-}*/
+}
 
-function App() {
+/*function App() {
   return ( 
     <div className=' antialiased flex w-full min-h-screen py-40 justify-center items-center'  >
 
@@ -36,7 +35,7 @@ function App() {
 
   </div>
   );
-}
+}*/
 
 export default App;
 

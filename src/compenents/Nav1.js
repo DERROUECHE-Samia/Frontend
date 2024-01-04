@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+
+/**
+ * Composant représentant la section "Rencontrer Notre Équipe".
+ * @component
+ *
+ * @returns {JSX.Element} - Élément React représentant la section.
+ */
+
 
 const Nav1 = ({ user }) => {
+  
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleCircleClick = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const handleLogout = () => {
+    // Mettez ici la logique de déconnexion
+    console.log("Déconnexion...");
+    // Par exemple, si vous utilisez un système d'authentification comme Firebase, vous pouvez ajouter ici la fonction de déconnexion :
+    // firebase.auth().signOut();
+  };
+
   return (
-    <nav className="bg-blue-300 p-4 flex flex-col md:flex-row md:items-center justify-between">
+    <nav className="bg-indigo-200 p-4 flex flex-col md:flex-row md:items-center justify-between">
       <div className="flex items-center">
         <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800">
           <span className="text-3xl text-black mr-1 pt-2">
@@ -10,7 +33,8 @@ const Nav1 = ({ user }) => {
           </span>
           <div className="flex items-center space-x-4">
             <span className="hidden md:inline-block">Designer</span>
-            <a href="/profile" className="text-white hover:text-pink-300 ml-4">
+            
+            <a href="/profile" className="text-white hover:text-pink-300">
               Profil
             </a>
             <a
@@ -23,16 +47,46 @@ const Nav1 = ({ user }) => {
         </div>
       </div>
 
-      <div className="flex items-center mt-4 md:mt-0">
+      <div className="flex items-center mt-4 md:mt-0 relative font-[Poppins]">
         {user && (
-          <div className="text-white md:ml-6">
-            <p className="text-lg font-bold">{user.fullName}</p>
-            <p>{user.name}</p>
-          </div>
-        )}
-        {user && user.name && (
-          <div className="bg-white border-black rounded-full h-10 w-10 flex items-center justify-center text-gray-800 font-bold ml-4 md:ml-6 mt-4 md:mt-0">
-            {user.name.charAt(0).toUpperCase()}
+          <div >
+          <div className="flex items-center mb-2 pb-4 mt-4">
+          <div>
+                    <p className="font-bold text-indigo-800">{user.fullName}</p>
+                    <p className="text-indigo-800">{user.name}</p>
+                  </div>
+          <div
+              className="bg-white border-indigo-800 rounded-full h-10 w-10 flex items-center justify-center text-indigo-800 font-bold ml-4 cursor-pointer"
+              onClick={handleCircleClick}
+          >
+              {user.name.charAt(0).toUpperCase()}
+            </div>
+                 
+                </div>
+            
+            
+            {showMenu && user.name && (
+  <div className="absolute bg-indigo-800 border border-indigo-800 p-4 rounded-md mt-1 z-10  pb-12 " 
+       style={{ left: "-120px", width: "200px" }}>
+    {/* Contenu du rectangle à afficher */}
+    <div className="flex items-center mb-2 pb-4 ">
+                  <div className="bg-white border-white rounded-full h-8 w-8 flex items-center justify-center text-indigo-700 font-bold mr-2">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="font-bold text-white">{user.fullName}</p>
+                    <p className="text-white" >{user.name}</p>
+                  </div>
+      </div>
+    <a href="/settings" className="text-white font-serif hover:underline block mb-2">
+      Paramètres du compte
+    </a>
+    <button onClick={handleLogout} className="text-white font-serif hover:underline block">
+      Se déconnecter
+    </button>
+  </div>
+)}
+            
           </div>
         )}
       </div>
