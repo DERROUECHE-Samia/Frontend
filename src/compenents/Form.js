@@ -1,9 +1,45 @@
 
+import React, { useState, useEffect } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import img from "../images/top5.jpeg"
+import img from "../images/top5.jpeg";
 
-export default function form() {
+
+export default function LoginForm() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+  
+    const handleUsernameChange = (e) => setUsername(e.target.value);
+    const handlePasswordChange = (e) => setPassword(e.target.value);
+  
+    const handleLogin = async () => {
+      try {
+        console.log("Logging in with:", { username, password });
+    
+        const response = await fetch("http://127.0.0.1:8000/api/login/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        });
+    
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Login successful:", data);
+          alert("Login successful:");
+          // Update state or context with the received data
+        } else {
+          const errorData = await response.json();
+          console.error("Login error:", errorData);
+          alert("Login error:");
+        }
+      } catch (error) {
+        console.error("Error during login:", error);
+        alert("Error during login:");
+      }
+    };
+
 return ( 
 
 
@@ -19,13 +55,14 @@ return (
     <div className='mt-9 '>
         <div>
             <label className='text-lg font-medium'>
-            Email  <FaEnvelope  className='ml-2' />
+            Nom d'utilisateur 
             </label>
             <input 
             className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
-            
-            placeholder=  'Entrez votre email '
-            type = 'email'
+            onChange={handleUsernameChange}
+            value={username}
+            placeholder=  "Entrez votre Nom d'utilisateur  "
+            type = 'text'
             />
         </div>
 
@@ -33,20 +70,25 @@ return (
 
         <div>
             <label className='text-lg font-medium'>
-           Password  <RiLockPasswordFill />
+           Password  
            </label>
             <input 
             className='w-full border-2  border-gray-400 rounded-xl p-4 mt-1 bg-transparent'
             placeholder=' Entrez votre mot de passe '
             type='password'
+            value={password}
+            onChange={handlePasswordChange}          
             />
         </div>
 
-        <button className='font-medium underline mt-5 text-base text-violet-400'>Mot de passe oublié?</button>
-
+        <button
+            className="font-medium underline mt-5 text-base text-violet-400"
+          >
+            Mot de passe oublié?
+          </button>
 
 <div className='mt-5 flex flex-col gap-y-4'>
-<button className= ' active:scale-95 active:duration-75 transition-all hover:scale-{1.01} ease-in-out py-4 rounded-xl  bg-violet-500 text-white  text-lg  font-bold '> Connexion </button>
+<button className= ' active:scale-95 active:duration-75 transition-all hover:scale-{1.01} ease-in-out py-4 rounded-xl  bg-violet-500 text-white  text-lg  font-bold ' onClick={handleLogin}> Connexion </button>
 </div>
 
 <p> Vous n'avez pas de compte ? <button className='font-medium underline mt-5 text-base text-violet-400'> Inscrire!</button> 
