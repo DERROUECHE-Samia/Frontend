@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-export default function Nav() {
+export default function Nav2() {
    const navigate = useNavigate();
 
    let Links =[ 
       {name:"HOME", link:"#section1"},
-      {name:"ABOUT", link:"#section4"},
-      {name:"SERVICES", link:"#section2"},
-      {name:"CONTACT", link:"#section5"},
    ];
    let [open, setOpen] = useState(false);
    return(
@@ -27,11 +24,9 @@ export default function Nav() {
           </div>
           <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0  pl-9 transition-all duration-500 ease-in ${open ? 'top-20 opacity-100 ': 'top-[-490px]' } md:opacity-100 opacity-0 `}>
             {
-            Links.map((link)=>(
-                 <li key ={link.name} className='md:ml-8 text-xl md:my-0 my-7 '>
-                  <a href={link.link} className='text-gray-800 hover:text-gray-400 duration-500'> {link.name}</a>
-               </li>
-            ))
+             <Link to="/">
+             Home
+           </Link>
             }
             <Button>
             <Link to="/login">

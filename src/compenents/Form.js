@@ -3,48 +3,56 @@ import React, { useState, useEffect } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import img from "../images/top5.jpeg";
-
+import Nav2 from "./Nav2";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-  
+    const navigate = useNavigate();
+
     const handleUsernameChange = (e) => setUsername(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
+    const handleLogin = async (e) => {
+      e.preventDefault();
   
-    const handleLogin = async () => {
       try {
-        console.log("Logging in with:", { username, password });
-    
-        const response = await fetch("http://127.0.0.1:8000/api/login/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
+        const response = await axios.post('http://127.0.0.1:8000/api/login/', {
+          username: username,
+          password: password
         });
-    
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Login successful:", data);
-          alert("Login successful:");
-          // Update state or context with the received data
-        } else {
-          const errorData = await response.json();
-          console.error("Login error:", errorData);
-          alert("Login error:");
-        }
-      } catch (error) {
-        console.error("Error during login:", error);
-        alert("Error during login:");
-      }
-    };
+        const token = response.data.access_token; // Retrieve the token from the response data
 
+
+        const user_type = response.data.user_type;
+        const id = response.data.id;
+
+        localStorage.setItem('id', id);
+        localStorage.setItem('token', token);
+        localStorage.setItem('type', user_type);
+
+  if (user_type === 'admin') {
+    navigate(`/Admin`); 
+  } else if (user_type === 'utilisateur') {
+    navigate(`/User`); 
+  } else {
+    navigate(`/Moderateur`); 
+  }
+      } catch (error) {
+        console.error(error);
+        alert ('Please Verify your informations');
+      
+    }
+    };
 return ( 
 
+<>
+    <div className='sticky-navbar'>
+      <Nav2/>
+    </div>
 
-
-<div className= 'container mx-auto'>
+<div className= 'container mx-auto pt-16'>
   <div className=' flex w-11/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden'>
 
 <div className = 'w-1/2 py-16 px-12 '>
@@ -101,7 +109,6 @@ return (
 
 
 
-
 <div className='w-1/2 p-5 rounded-2xl' >
   <img src = {img} alt='' />
 </div>
@@ -110,8 +117,7 @@ return (
 
   </div>  
 </div>
-
-
+</>
 )
 
 }

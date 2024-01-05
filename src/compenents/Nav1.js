@@ -9,19 +9,16 @@ import React, { useState } from 'react';
  */
 
 
-const Nav1 = ({ user }) => {
+const Nav1 = () => {
   
   const [showMenu, setShowMenu] = useState(false);
-
+  const [user, setUser] = useState();
   const handleCircleClick = () => {
     setShowMenu(!showMenu);
   };
 
   const handleLogout = () => {
-    // Mettez ici la logique de déconnexion
     console.log("Déconnexion...");
-    // Par exemple, si vous utilisez un système d'authentification comme Firebase, vous pouvez ajouter ici la fonction de déconnexion :
-    // firebase.auth().signOut();
   };
 
   return (
