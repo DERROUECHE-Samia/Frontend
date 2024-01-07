@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav1 from './compenents/Nav1';
 import Recherche from './compenents/Recherche';
 import Home from './compenents/Home';
-import Form from './compenents/Form';
+import Connexion from './compenents/Form';
 import Moderateur from './containers/Moderateur';
 import User from  './containers/User';
 import Admin from './containers/Admin';
@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
-       <Route path="/login" element={<Form />} />
+       <Route path="/login" element={<Connexion />} />
         <Route path="" element={<Home />} />
         <Route path="/signin" element={<Inscription />} />
         <Route path="/thanks" element={<  ThanksPage />} />

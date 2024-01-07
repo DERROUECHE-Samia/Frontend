@@ -51,9 +51,14 @@ return (
     <div className='sticky-navbar'>
       <Nav2/>
     </div>
-
-<div className= 'container mx-auto pt-16'>
+    <div className= 'container mx-auto'>
   <div className=' flex w-11/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden'>
+
+  <div className="w-1/2 p-4 rounded-3xl">
+          <img src={img} alt="" className="w-full h-full object-cover" />
+        </div>
+
+
 
 <div className = 'w-1/2 py-16 px-12 '>
 <h1 className='text-5xl  font-semibold'> Bienvenu!! </h1>
@@ -75,7 +80,6 @@ return (
         </div>
 
 
-
         <div>
             <label className='text-lg font-medium'>
            Password  
@@ -89,18 +93,23 @@ return (
             />
         </div>
 
-        <button
-            className="font-medium underline mt-5 text-base text-violet-400"
-          >
-            Mot de passe oublié?
-          </button>
+
+
+        <button className='font-medium underline mt-5 text-base text-violet-400'>Mot de passe oublié?</button>
+
 
 <div className='mt-5 flex flex-col gap-y-4'>
-<button className= ' active:scale-95 active:duration-75 transition-all hover:scale-{1.01} ease-in-out py-4 rounded-xl  bg-violet-500 text-white  text-lg  font-bold ' onClick={handleLogin}> Connexion </button>
+<button className= ' active:scale-95 active:duration-75 transition-all hover:scale-{1.01} ease-in-out py-4 rounded-xl  bg-violet-500 text-white  text-lg  font-bold ' 
+onClick={handleLogin}> Connexion </button>
 </div>
 
-<p> Vous n'avez pas de compte ? <button className='font-medium underline mt-5 text-base text-violet-400'> Inscrire!</button> 
-</p>
+
+<p>
+              Vous n'avez pas de compte ?{' '}
+              <Link to='/Inscr' className='font-medium underline mt-5 text-base text-violet-400'>
+              Inscrivez-vous ici!
+              </Link>
+            </p>
 
 
     </div  >
@@ -109,14 +118,12 @@ return (
 
 
 
-<div className='w-1/2 p-5 rounded-2xl' >
-  <img src = {img} alt='' />
-</div>
 
 
 
   </div>  
 </div>
+
 </>
 )
 
