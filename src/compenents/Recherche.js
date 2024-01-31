@@ -8,8 +8,13 @@ const [searchText, setSearchText] = useState('');
   };
 
   const handleSearch = () => {
-    // Mettez ici la logique de recherche si nécessaire
+    //la logique de recherche
     console.log('Recherche de :', searchText);
+  };
+
+
+  const handleFilter = () => {
+    //la logique de filtre
   };
 
   return (
@@ -22,17 +27,28 @@ const [searchText, setSearchText] = useState('');
           onChange={handleInputChange}
           className="bg-blue-100  px-4 py-3 flex-1 focus:outline-none "
         />
-         <button 
+          <button 
           onClick={handleSearch}
           className="bg-blue-100 hover:bg-rose-100 p-3 flex items-center justify-center"
-         >
+          >
              <span className='text-black'>
-             <ion-icon className='h-20 w-20' name="search"></ion-icon>
+             <ion-icon  name="search" size="medium"></ion-icon>
              </span>
           
         </button>
-      </div>
+        </div>
+        <button 
+          onClick={handleFilter}
+          className=" hover:bg-rose-100 p-3 "
+         >
+            <span className='text-black  '>
+            <ion-icon name="funnel" size="large"></ion-icon>
+
+             </span>
+          
+        </button>
+       
+       
     </div>
   );
 }
-
