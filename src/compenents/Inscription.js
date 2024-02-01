@@ -12,10 +12,7 @@ import Nav2 from "./Nav2";
 import { useNavigate } from 'react-router-dom';
 
 export default function Inscription() {
-<<<<<<< HEAD
   
-=======
->>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
   const [yes, setyes] = useState('True');
   const[CodeAndUserInfo,setCodeAndUserInfo]=useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -319,17 +316,10 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
               <div className='mt-9 '>
     <div>
         <label className='text-lg font-medium'>
-<<<<<<< HEAD
                 Nom & Prénom  
                 </label>
                 {isUsernameTaken && <p style={{ color: 'red' }}> Nom déjà pris.</p>}
                 {!isUsernameTaken && <p style={{ color: 'green' }}> Nom disponible.</p>}
-=======
-                Nom d'utilisateur  
-                </label>
-                {isUsernameTaken && <p style={{ color: 'red' }}>Nom d'utilisateur déjà pris.</p>}
-                {!isUsernameTaken && <p style={{ color: 'green' }}>Nom d'utilisateur disponible.</p>}
->>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
 
                 <input 
                 className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
@@ -339,39 +329,9 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
                 onChange={handleUsernameChange}
                 />
         </div>     
-<<<<<<< HEAD
        
        
        
-=======
-        <div>
-        <label className='text-lg font-medium'>
-            Nom  
-            </label>
-            <input 
-            className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
-            onChange={handlefamilyNameChange}
-
-            placeholder=  'Entrez votre nom '
-            type = 'text'
-            />
-        </div>
-        <div>
-        <label className='text-lg font-medium'>
-            Prénom 
-            </label>
-
-            <input 
-            className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
-            onChange={handlefirstNameChange}
-            placeholder=  'Entrez votre prénom '
-
-            type = 'text'
-            />
-        </div>
-       
-
->>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
         <div>
         <label className='text-lg font-medium'>
             Email  

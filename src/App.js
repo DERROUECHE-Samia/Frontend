@@ -19,7 +19,7 @@ import Pageadmin from './compenents/Pageadmin';
 
 function App() {
   return (
-      /*<Router>
+    <Router>
       <Routes>
        <Route path="/login" element={<Connexion />} />
         <Route path="" element={<Home />} />
@@ -36,12 +36,10 @@ function App() {
     </Router>
      
 
-          <Route path="/pageadmin" element={<Pageadmin />} />*/
+          /*<Route path="/pageadmin" element={<Pageadmin />} />*/
      
      
-      <div>
-        <Pageadmin/>
-      </div>
+    
 
      
     );

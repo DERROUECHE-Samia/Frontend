@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-
-=======
->>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
 export default function Nav2() {
    const navigate = useNavigate();
 
