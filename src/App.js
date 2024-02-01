@@ -22,8 +22,8 @@ function App() {
         <Route path="/thanks" element={<  ThanksPage />} />
 
         <Route path="/Moderateur" element={<  Moderateur />} />
-        <Route path="/User" element={<  User />} />
-        <Route path="/Admin" element={<  Admin />} />
+        <Route path="/User/:username" element={<User />} />
+        <Route path="/Admin/:username" element={<  Admin />} />
 
 
 
