@@ -51,18 +51,12 @@ return (
     <div className='sticky-navbar'>
       <Nav2/>
     </div>
-<<<<<<< HEAD
 
 
     <div className= 'container mx-auto'>
   <div className=' flex w-11/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden'>
 
 
-=======
-    <div className= 'container mx-auto'>
-  <div className=' flex w-11/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden'>
-
->>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
   <div className="w-1/2 p-4 rounded-3xl">
           <img src={img} alt="" className="w-full h-full object-cover" />
         </div>
@@ -114,18 +108,11 @@ onClick={handleLogin}> Connexion </button>
 
 
 <p>
-<<<<<<< HEAD
               Vous n'avez pas de compte ?
               <div className='font-medium underline mt-5 text-base text-violet-400'>
               Inscrivez-vous ici! 
               </div>
             
-=======
-              Vous n'avez pas de compte ?{' '}
-              <Link to='/Inscr' className='font-medium underline mt-5 text-base text-violet-400'>
-              Inscrivez-vous ici!
-              </Link>
->>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
             </p>
 
 

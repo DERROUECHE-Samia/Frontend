@@ -5,7 +5,7 @@ import NavAdmin from './compenents/NavAdmin';
 
 import Recherche from './compenents/Recherche';
 import Home from './compenents/Home';
-import Connexion from './compenents/Form';
+import Connexion from './compenents/Connexion';
 import Moderateur from './containers/Moderateur';
 import User from  './containers/User';
 import Admin from './containers/Admin';
