@@ -15,11 +15,12 @@ import MesFavoris from './compenents/MesFavoris';
 import './App.css';
 import ThanksPage from './compenents/ThanksPage';
 import Pageadmin from './compenents/Pageadmin';
+import PageModer from './compenents/PageModer';
 
 
 function App() {
   return (
-    <Router>
+    /* <Router>
       <Routes>
        <Route path="/login" element={<Connexion />} />
         <Route path="" element={<Home />} />
@@ -33,11 +34,12 @@ function App() {
 
 
       </Routes>
-    </Router>
+    </Router>*/
      
 
-          /*<Route path="/pageadmin" element={<Pageadmin />} />*/
-     
+<div>
+  <Pageadmin/>
+</div>     
      
     
 

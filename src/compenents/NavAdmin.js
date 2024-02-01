@@ -29,7 +29,7 @@ const NavAdmin = () => {
             <ion-icon name="bug"></ion-icon>
           </span>  
           <div className="flex items-center space-x-4">
-            <span className="hidden md:inline-block"> Designer </span>
+            <span className="hidden md:inline-block"> RTcleByte </span>
             
             <a href="/profile" className="text-white hover:text-pink-300">
               Profil
