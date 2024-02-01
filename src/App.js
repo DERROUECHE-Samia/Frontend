@@ -1,11 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav1 from './compenents/Nav1';
+<<<<<<< HEAD
 import NavAdmin from './compenents/NavAdmin';
 
 import Recherche from './compenents/Recherche';
 import Home from './compenents/Home';
 import Connexion from './compenents/Connexion';
+=======
+import Recherche from './compenents/Recherche';
+import Home from './compenents/Home';
+import Connexion from './compenents/Form';
+>>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
 import Moderateur from './containers/Moderateur';
 import User from  './containers/User';
 import Admin from './containers/Admin';
@@ -14,10 +20,16 @@ import Inscription from './compenents/Inscription';
 import MesFavoris from './compenents/MesFavoris';
 import './App.css';
 import ThanksPage from './compenents/ThanksPage';
+<<<<<<< HEAD
 import Pageadmin from './compenents/Pageadmin';
 function App() {
   return (
   <Router>
+=======
+function App() {
+  return (
+    <Router>
+>>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
       <Routes>
        <Route path="/login" element={<Connexion />} />
         <Route path="" element={<Home />} />
@@ -32,6 +44,7 @@ function App() {
 
       </Routes>
     </Router>
+<<<<<<< HEAD
      
 
             /*<Route path="/pageadmin" element={<Pageadmin />} />*/
@@ -44,3 +57,9 @@ function App() {
   }
   
   export default App;
+=======
+  );
+}
+
+export default App;
+>>>>>>> b09301ec37af251e0d8279a7f9ea5c3c7a57636c
