@@ -9,34 +9,33 @@ import Connexion from './compenents/Connexion';
 import Moderateur from './containers/Moderateur';
 import User from  './containers/User';
 import Admin from './containers/Admin';
-
 import Inscription from './compenents/Inscription';
 import MesFavoris from './compenents/MesFavoris';
 import './App.css';
 import ThanksPage from './compenents/ThanksPage';
 import Pageadmin from './compenents/Pageadmin';
-
+import Parmetres from './compenents/Parametre_compte'
 
 function App() {
   return (
     <Router>
       <Routes>
        <Route path="/login" element={<Connexion />} />
-        <Route path="" element={<Home />} />
+       
+       <Route path="/l" element={<Parmetres />} />
+        <Route path="" element={<Home/>} />
         <Route path="/signin" element={<Inscription />} />
         <Route path="/thanks" element={<  ThanksPage />} />
+        <Route path="/:typ/:usern" element={<  Parmetres />} />
+        <Route path="/home/user" element={<  Recherche />} />
 
-        <Route path="/Moderateur" element={<  Moderateur />} />
-        <Route path="/User/:username" element={<User />} />
-        <Route path="/Admin/:username" element={<  Admin />} />
-
+        <Route path="/home/admin" element={<  Pageadmin />} />
 
 
       </Routes>
     </Router>
      
 
-          /*<Route path="/pageadmin" element={<Pageadmin />} />*/
      
      
     
