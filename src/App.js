@@ -28,6 +28,7 @@ function App() {
         <Route path="/thanks" element={<  ThanksPage />} />
         <Route path="/:typ/:usern" element={<  Parmetres />} />
         <Route path="/home/utilisateur" element={<  Recherche />} />
+        <Route path="/home" element={<  Recherche />} />
 
         <Route path="/home/admin" element={<  Pageadmin />} />
 
