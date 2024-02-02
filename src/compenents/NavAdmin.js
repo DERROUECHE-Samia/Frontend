@@ -9,7 +9,7 @@ import React, { useState } from 'react';
  */
 
 
-const Nav1 = () => {
+const NavAdmin = () => {
   
   const [showMenu, setShowMenu] = useState(false);
   const [user, setUser] = useState();
@@ -29,17 +29,13 @@ const Nav1 = () => {
             <ion-icon name="bug"></ion-icon>
           </span>  
           <div className="flex items-center space-x-4">
-            <span className="hidden md:inline-block">Designer</span>
+            <span className="hidden md:inline-block"> Designer </span>
             
             <a href="/profile" className="text-white hover:text-pink-300">
               Profil
             </a>
-            <a
-              href="/favorites"
-              className="text-pink-700 hover:text-pink-300 font-[Kanit]"
-            >
-              Mes Favoris
-            </a>
+
+          
           </div>
         </div>
       </div>
@@ -63,10 +59,10 @@ const Nav1 = () => {
             
             
             {showMenu && user.name && (
-  <div className="absolute bg-indigo-800 border border-indigo-800 p-4 rounded-md mt-1 z-10  pb-12 " 
+           <div className="absolute bg-indigo-800 border border-indigo-800 p-4 rounded-md mt-1 z-10  pb-12 " 
        style={{ left: "-120px", width: "200px" }}>
-    {/* Contenu du rectangle à afficher */}
-    <div className="flex items-center mb-2 pb-4 ">
+             {/* Contenu du rectangle à afficher */}
+             <div className="flex items-center mb-2 pb-4 ">
                   <div className="bg-white border-white rounded-full h-8 w-8 flex items-center justify-center text-indigo-700 font-bold mr-2">
                     {user.name.charAt(0).toUpperCase()}
                   </div>
@@ -91,4 +87,4 @@ const Nav1 = () => {
   );
 };
 
-export default Nav1;
+export default NavAdmin;
