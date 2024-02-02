@@ -215,6 +215,7 @@ const handleUsernameChange = async (e) => {
     
         <div className="ml-28 mt-28">
           <p className="font-bold text-2xl pb-4">Paramètres du compte</p>
+          {type}
           <div className="border shadow-lg p-12 mr-96">
             <div className="flex mb-2 pb-4">
               <div className="pl-6 pt-6">

@@ -27,7 +27,7 @@ function App() {
         <Route path="/signin" element={<Inscription />} />
         <Route path="/thanks" element={<  ThanksPage />} />
         <Route path="/:typ/:usern" element={<  Parmetres />} />
-        <Route path="/home/user" element={<  Recherche />} />
+        <Route path="/home/utilisateur" element={<  Recherche />} />
 
         <Route path="/home/admin" element={<  Pageadmin />} />
 
