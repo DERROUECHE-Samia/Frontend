@@ -34,14 +34,16 @@ export default function Nav() {
                </li>
             ))
             }
-            <Button>
-            <Link to="/login">
-        Log in
-      </Link>
-          </Button>
-          <Button>
+            <Button className='bg-095da'>
+             <Link to="/login">
+              Connexion
+             </Link>
+            </Button>
+
+
+          <Button className='bg-095da' >
           <Link to="/signin">
-            Get Started
+            Commencez l'expéerience 
             </Link>
           </Button>
           </ul>

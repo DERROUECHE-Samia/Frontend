@@ -16,11 +16,12 @@ import './App.css';
 import ThanksPage from './compenents/ThanksPage';
 import Pageadmin from './compenents/Pageadmin';
 import PageModer from './compenents/PageModer';
+import Article from './compenents/Article';
 
 
 function App() {
   return (
-    /* <Router>
+   <Router>
       <Routes>
        <Route path="/login" element={<Connexion />} />
         <Route path="" element={<Home />} />
@@ -34,12 +35,9 @@ function App() {
 
 
       </Routes>
-    </Router>*/
+    </Router>
      
-
-<div>
-  <Pageadmin/>
-</div>     
+   
      
     
 

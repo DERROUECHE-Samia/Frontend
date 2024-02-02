@@ -1,17 +1,22 @@
 import React from 'react';
 
 
-
+import Nav1 from './Nav1';
+import Article from './Article';  
 
 
 function MesFavoris() {
     return (
       <div>
+    <Nav1 user={{ name: 'derr', fullName: 'John Doe' , mail:'john@gmail.com'}}/>
 
         <div className="container mx-auto p-4">
-          <h1 className="text-2xl font-bold mb-4"> Mes Favoris </h1>
-          {/* Ajoutez ici le contenu de la page des favoris */}
+          <Article article={{titre: 'samia',auteur: 'AAAAAAAAAAuttttteuuuuuur ', institution: 'IIIIIIIIIInstiiitution',resume: 'resumme', motcle: 'fffffff', reference: 'rrrrrreefeeerence',    pdf: 'pddddddddddf',textuel: 'texxxxxxxxxxt'}}/>
+          <Article article={{titre: 'samia',auteur: 'AAAAAAAAAAuttttteuuuuuur ', institution: 'IIIIIIIIIInstiiitution',resume: 'resumme', motcle: 'fffffff', reference: 'rrrrrreefeeerence',    pdf: 'pddddddddddf',textuel: 'texxxxxxxxxxt'}}/>
         </div>
+
+
+
       </div>
     );
   }

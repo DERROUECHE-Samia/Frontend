@@ -32,7 +32,7 @@ const NavAdmin = () => {
             <span className="hidden md:inline-block"> RTcleByte </span>
             
             <a href="/profile" className="text-white hover:text-pink-300">
-              Profil
+              Mon Profil
             </a>
 
           

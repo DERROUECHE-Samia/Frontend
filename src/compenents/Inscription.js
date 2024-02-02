@@ -377,7 +377,8 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
         </div>
         </div>
                       <div className='mt-5 flex flex-col gap-y-4'>
-                <button onClick={handleSendCode} className='active:scale-95 active:duration-75 transition-all hover:scale-1.01 ease-in-out py-4 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                <button onClick={handleSendCode} className='active:scale-95 active:duration-75 
+                transition-all hover:scale-1.01 ease-in-out py-4 rounded-xl bg-violet-500 text-white text-lg font-bold'>
                   Créer un compte
                 </button>
               </div>

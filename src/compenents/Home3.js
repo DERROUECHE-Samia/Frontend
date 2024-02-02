@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import img  from '../images/Group 4.png' ; 
 
 export default function Home3() {
   const [showImage, setShowImage] = useState(false);
@@ -34,7 +35,7 @@ export default function Home3() {
       >
         <img
           id="lazy-image"
-          src={'/Group 4.png'}
+          src={ img }
           alt="Description de l'image"
           className="w-full h-full max-w-full mx-auto"
           loading="lazy"

@@ -6,6 +6,8 @@ import img from "../images/top5.jpeg";
 import Nav2 from "./Nav2";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 export default function LoginForm() {
     const [username, setUsername] = useState("");
@@ -85,7 +87,7 @@ return (
 
         <div>
             <label className='text-lg font-medium'>
-           Password  
+           Mot de passe  
            </label>
             <input 
             className='w-full border-2  border-gray-400 rounded-xl p-4 mt-1 bg-transparent'
@@ -107,13 +109,12 @@ onClick={handleLogin}> Connexion </button>
 </div>
 
 
-<p>
-              Vous n'avez pas de compte ?
-              <div className='font-medium underline mt-5 text-base text-violet-400'>
-              Inscrivez-vous ici! 
-              </div>
-            
-            </p>
+    <p>
+      Vous n'avez pas de compte ?
+      <div className='font-medium underline mt-5 text-base text-violet-400'>
+        <Link to='/signin'> Inscrivez-vous ici! </Link>
+      </div>
+    </p> 
 
 
     </div  >

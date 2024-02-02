@@ -1,6 +1,10 @@
 // About.js
 
 import React from "react";
+import img1 from '../images/Ellipse 14.png' ; 
+import img2 from '../images/Ellipse 11.png';
+import img3 from '../images/Ellipse 12.png';
+import img4 from '../images/Ellipse 16.png';
 
 /**
  * Composant représentant la section "Rencontrer Notre Équipe".
@@ -19,7 +23,7 @@ export default function About() {
         {/* Membre 1 */}
         <div className="text-center mx-4">
           <img
-            src={'/Ellipse 14.png'}
+            src={img1}
             alt="Image de Derroueche Samia"
             className="w-full h-full max-w-full mx-auto mb-4"
             style={{ width: '80%', height: '80%' }}
@@ -31,7 +35,7 @@ export default function About() {
         {/* Membre 2 */}
         <div className="text-center mx-4">
           <img
-            src={'/Ellipse 11.png'}
+            src={img2}
             alt="Image de Benabdallah Asma"
             className="w-full h-full max-w-full mx-auto mb-4"
             style={{ width: '100%', height: '81%'}}
@@ -43,7 +47,7 @@ export default function About() {
         {/* Membre 3 */}
         <div className="text-center mx-4">
           <img
-            src={'/Ellipse 12.png'}
+            src={img3}
             alt="Image de Rebhi Assala"
             className="w-full h-full max-w-full mx-auto mb-4"
             style={{ width: '100%', height: '81%'}}
@@ -55,7 +59,7 @@ export default function About() {
         {/* Membre 4 */}
         <div className="text-center mx-4">
           <img
-            src={'/Ellipse 16.png'}
+            src={img4}
             alt="Image de Keddour Dina"
             className="w-full h-full max-w-full mx-auto mb-4"
             style={{ width: '100%', height: '81%'}}
