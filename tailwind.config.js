@@ -8,6 +8,7 @@ module.exports = {
             backgroundColor: {
               'ffd1ce': '#FFD1CE',
               'badeff': '#BADEFF',
+              '095da': '#095DA',
             },
           },
         },

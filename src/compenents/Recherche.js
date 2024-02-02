@@ -1,12 +1,8 @@
-import React, { useState ,useEffect} from 'react';
-import Article from './Article.js';
-import Nav1 from "./Nav1.js";
-import {useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import Article from './Article';
 
 export default function SearchBar() {
   const [searchText, setSearchText] = useState('');
-  const type=localStorage.getItem('type');
-  const navigate=useNavigate();
   const [searchResult, setSearchResult] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -45,27 +41,11 @@ export default function SearchBar() {
   const handleFilterClick = () => {
     setShowDropdown(!showDropdown);
   };
- useEffect(() => {
-    const isUserSignedIn = () => {
-      const token = localStorage.getItem('token');
-      return !!token;
-    };
 
-    if (!isUserSignedIn()) {
-      navigate('/login'); 
-    }  else {
-      if (type !== 'user') {
-        navigate('/unauthorized');
-      }
-    }
-
-  
-  }, [type,navigate]);
 
   return (
     <>
-    <Nav1/>
-      <div className="flex items-center pt-16 pb-8 justify-center mt-4">
+      <div className="flex items-center pt-4 pb-8 justify-center mt-4">
         <div className="flex w-1/3 border border-black rounded-full overflow-hidden">
           <input
             type="text"
