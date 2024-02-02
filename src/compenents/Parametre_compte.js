@@ -8,6 +8,12 @@ import {useParams } from 'react-router-dom';
 import axios from 'axios';
 import ChangePassword from './ChangePassword';
 
+/**
+ * Composant des paramètres du compte.
+ * @param {Object} user - Les informations de l'utilisateur.
+ * @returns {JSX.Element} Composant React.
+ */
+
 const Parmetres = ({ user }) => {
 
   const [userData, setUserData] = useState(null);

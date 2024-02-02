@@ -4,6 +4,12 @@ import React from 'react';
 import Nav1 from './Nav1';
 import Article from './Article';  
 
+/**
+ * Composant MesFavoris - Affiche la liste des éléments favoris de l'utilisateur.
+ * @component
+ */
+
+
 
 function MesFavoris() {
     return (
