@@ -1,12 +1,9 @@
+
 import React, { useState } from 'react';
-
-
-/**
- * Composant représentant la section "Rencontrer Notre Équipe".
- * @component
- *
- * @returns {JSX.Element} - Élément React représentant la section.
- */
+import Button from './Button';
+import { Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Nav1 = () => {
@@ -65,7 +62,6 @@ const Nav1 = () => {
             {showMenu && user.name && (
   <div className="absolute bg-indigo-800 border border-indigo-800 p-4 rounded-md mt-1 z-10  pb-12 " 
        style={{ left: "-120px", width: "200px" }}>
-    {/* Contenu du rectangle à afficher */}
     <div className="flex items-center mb-2 pb-4 ">
                   <div className="bg-white border-white rounded-full h-8 w-8 flex items-center justify-center text-indigo-700 font-bold mr-2">
                     {user.name.charAt(0).toUpperCase()}
@@ -89,6 +85,10 @@ const Nav1 = () => {
       </div>
     </nav>
   );
-};
+}
+
+
+
+
 
 export default Nav1;

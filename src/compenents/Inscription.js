@@ -12,7 +12,6 @@ import Nav2 from "./Nav2";
 import { useNavigate } from 'react-router-dom';
 
 export default function Inscription() {
-  
   const [yes, setyes] = useState('True');
   const[CodeAndUserInfo,setCodeAndUserInfo]=useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -215,6 +214,7 @@ const handleUsernameChange = async (e) => {
   await ConfirmUsername(newUsername);  // Add 'await' here
 };
 
+
 const ConfirmUsername = async (newUsername) => { // Pass 'newUsername' as a parameter
   try {
     const response = await axios.post('http://127.0.0.1:8000/api/check_username/', { username: newUsername });
@@ -226,7 +226,7 @@ const ConfirmUsername = async (newUsername) => { // Pass 'newUsername' as a para
 const handleEmailChange = async (e) => {
   const newEmail = e.target.value;
   setEmail(newEmail);
-  await ConfirmEmail(newEmail);  // Add 'await' here
+  await ConfirmEmail(newEmail);  
 };
 const[isEmailTaken,setIsEmailTaken]=useState('');
 const ConfirmEmail = async (newEmail) => { // Pass 'newUsername' as a parameter
@@ -316,10 +316,10 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
               <div className='mt-9 '>
     <div>
         <label className='text-lg font-medium'>
-                Nom & Prénom  
+                Nom d'utilisateur  
                 </label>
-                {isUsernameTaken && <p style={{ color: 'red' }}> Nom déjà pris.</p>}
-                {!isUsernameTaken && <p style={{ color: 'green' }}> Nom disponible.</p>}
+                {isUsernameTaken && <p style={{ color: 'red' }}>Nom d'utilisateur déjà pris.</p>}
+                {!isUsernameTaken && <p style={{ color: 'green' }}>Nom d'utilisateur disponible.</p>}
 
                 <input 
                 className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
@@ -329,13 +329,38 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
                 onChange={handleUsernameChange}
                 />
         </div>     
+        <div>
+        <label className='text-lg font-medium'>
+            Nom  
+            </label>
+            <input 
+            className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
+            onChange={handlefamilyNameChange}
+
+            placeholder=  'Entrez votre nom '
+            type = 'text'
+            />
+        </div>
+        <div>
+        <label className='text-lg font-medium'>
+            Prénom 
+            </label>
+
+            <input 
+            className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
+            onChange={handlefirstNameChange}
+            placeholder=  'Entrez votre prénom '
+
+            type = 'text'
+            />
+        </div>
        
-       
-       
+
         <div>
         <label className='text-lg font-medium'>
             Email  
             </label>
+            
             {isEmailTaken && <p style={{ color: 'red' }}>Email déjà pris.</p>}
                 {!isEmailTaken && <p style={{ color: 'green' }}>Email disponible.</p>}
             <input 

@@ -69,7 +69,6 @@ const PageModer = () => {
 
   return (
     <div>
-      <Nav1 user={{ name: 'derr', fullName: 'John Doe', mail: 'john@gmail.com' }} />
 
       <div className='mt-5 flex'>
         <div className='w-1/2 p-4'>
