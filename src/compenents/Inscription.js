@@ -11,6 +11,14 @@ import img from "../images/top5.jpeg";
 import Nav2 from "./Nav2";
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Composant représentant la page d'inscription.
+ * 
+ * @component
+ * @returns {JSX.Element} Composant React représentant la page d'inscription.
+ */
+
+
 export default function Inscription() {
   const [yes, setyes] = useState('True');
   const[CodeAndUserInfo,setCodeAndUserInfo]=useState('');

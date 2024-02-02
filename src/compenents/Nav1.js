@@ -5,6 +5,14 @@ import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+/**
+ * Composant représentant la section "Rencontrer Notre Équipe".
+ * @component
+ *
+ * @returns {JSX.Element} - Élément React représentant la section.
+ */
+
+
 /*
 const Nav1 = () => {
   

@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
-import Article from './Article';
+import Titrearticle from './Titrearticle';
+
+/**
+ * Composant de la barre de recherche avec filtres.
+ * @returns {JSX.Element} Composant React.
+ */
 
 export default function SearchBar() {
   const [searchText, setSearchText] = useState('');
   const [searchResult, setSearchResult] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [searchTextFiltre, setSearchTextFiltre] = useState('');
+  
+
+  const handleInputChangeFiltre = (e) => {
+    setSearchTextFiltre(e.target.value);
+  };
+
 
   const handleInputChange = (e) => {
     setSearchText(e.target.value);
   };
+
+
 
   const handleSearch = () => {
     const result = {
@@ -20,13 +34,24 @@ export default function SearchBar() {
       reference: 'rrrrrreefeeerence',
       pdf: 'pddddddddddf',
       textuel: 'texxxxxxxxxxt',
-    };
-
+    }
     setSearchResult(result);
   };
 
+
   const handleFilterkeyword = () => {
     //loggique du filtre selon les mots cles
+    const result = {
+      titre: 'sam',
+      auteur: 'AAAAAAAAAAuttttteuuuuuur ',
+      institution: 'IIIIIIIIIInstiiitution',
+      resume: 'resumme',
+      motcle: 'fffffff',
+      reference: 'rrrrrreefeeerence',
+      pdf: 'pddddddddddf',
+      textuel: 'texxxxxxxxxxt',
+    }
+    setSearchResult(result);
   };
 
   const handleFilterauthors = () => {
@@ -39,7 +64,9 @@ export default function SearchBar() {
   };
   
   const handleFilterClick = () => {
-    setShowDropdown(!showDropdown);
+
+     setShowDropdown(!showDropdown);
+
   };
 
 
@@ -63,29 +90,40 @@ export default function SearchBar() {
             </span>
           </button>
         </div>
+        <div className='flex items-center mt-4 md:mt-0 relative'>
         <button
           onClick={handleFilterClick}
-          className="hover:bg-rose-100 p-3 relative"
+          className="p-3 relative"
         >
           <span className='text-black'>
             <ion-icon name="funnel" size="large"></ion-icon>
           </span>
+        </button>
+        
           {showDropdown && (
-            <div className="absolute border bg-blue-100 border-solid border-2 border-blue-100 p-4 mt-8 rounded-md mt-1 z-10 "
+            <div className="absolute border bg-blue-100 border-solid border-2 border-blue-100 p-4 mt-72 rounded-md mt-1 z-10 "
             style={{ left: "-140px", width: "200px" }}>
-              <div className='pb-2 flex  text-indigo-700 font-bold ' onClick={handleFilterkeyword}>-Les mots clés</div>
-              <div className='pb-2 flex  text-indigo-700 font-bold  ' onClick={handleFilterauthors}>-Les auteurs</div>
-              <div className='pb-2 flex  text-indigo-700 font-bold ' onClick={handleFilterinstitutions}>-Les institutions</div>
-              <div className='pb-2 flex text-indigo-700 font-bold ' onClick={handleFilterpublicationPeriod}>-Période entre deux dates de publication</div>
+              <div>
+                <input
+                 type="text"
+                 placeholder="filtrer"
+                 value={searchTextFiltre}
+                 onChange={handleInputChangeFiltre}
+                />
+               </div>             
+              <div className='pb-2 flex  text-indigo-700 font-bold cursor-pointer' onClick={handleFilterkeyword}>-Les mots clés</div>
+              <div className='pb-2 flex  text-indigo-700 font-bold cursor-pointer ' onClick={handleFilterauthors}>-Les auteurs</div>
+              <div className='pb-2 flex  text-indigo-700 font-bold cursor-pointer' onClick={handleFilterinstitutions}>-Les institutions</div>
+              <div className='pb-2 flex text-indigo-700 font-bold cursor-pointer' onClick={handleFilterpublicationPeriod}>-Période entre deux dates de publication</div>
             </div>
           )}
-        </button>
+        </div>
       </div>
 
       {/* Affichage du résultat de la recherche */}
       <div>
         {searchResult && (
-          <Article
+          <Titrearticle
             article={{
               titre: searchResult.titre,
               auteur: searchResult.auteur,

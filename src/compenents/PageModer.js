@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Nav1 from './Nav1';
 
-
+/**
+ * Composant de la page du moderateur.
+ * @component
+ */
 
 const PageModer = () => {
     return (

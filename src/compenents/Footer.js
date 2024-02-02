@@ -1,6 +1,14 @@
 // Footer.js
 import React from 'react';
 
+/**
+ * Composant représentant le pied de page de l'application.
+ *
+ * @component
+ * @returns {JSX.Element} Composant React représentant le pied de page.
+ */
+
+
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-6">
