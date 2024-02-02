@@ -21,8 +21,8 @@ import Article from './compenents/Article';
 
 function App() {
   return (
-   <Router>
-      <Routes>
+   /*<Router>
+       <Routes>
        <Route path="/login" element={<Connexion />} />
         <Route path="" element={<Home />} />
         <Route path="/signin" element={<Inscription />} />
@@ -35,10 +35,12 @@ function App() {
 
 
       </Routes>
-    </Router>
+    </Router> */
      
    
-     
+     <div>
+      <Pageadmin/>
+     </div>
     
 
      

@@ -3,6 +3,8 @@ import NavAdmin from './NavAdmin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+
 
 const Pageadmin = () => {
   const [showForm, setShowForm] = useState(false);
@@ -12,6 +14,18 @@ const Pageadmin = () => {
     email: '',
     password: '',
   });
+  const [downloadLink, setDownloadLink] = useState('');
+  const [redirect, setRedirect] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setRedirect(true);
+  };
+
+  if (redirect) {
+    window.location.href = downloadLink; // Rediriger vers le lien dynamique
+  }
+
 
   const handleAddModeratorClick = () => {
     setShowForm(!showForm);
@@ -63,6 +77,8 @@ const Pageadmin = () => {
     updatedModerators.splice(index, 1);
     setModerators(updatedModerators);
   };
+
+
 
   return (
     <div>
@@ -167,32 +183,31 @@ const Pageadmin = () => {
 
         {/* Deuxième colonne - Liste des articles */}
         <div className='flex-1 p-4'>
-          <div className='flex flex-col gap-y-4'>
-            <a
-              href='https://drive.google.com/drive/folders/1IlmqYB-Z0j7PNtnJXCkiwqMG_BSINSuM'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <button
-                className='w-full mb-4 max-h-[60px] rounded-3xl active:scale-95 
-              active:duration-75 transition-all hover:scale-1.01 ease-in-out py-4
-              bg-violet-500 text-white text-lg font-bold'
-                onClick={(e) => e.stopPropagation()} // Éviter que le clic du bouton ne déclenche le lien immédiatement
-              >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  stroke='currentColor'
-                  className='w-6 h-6 inline-block mr-2'
-                >
-                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 5l7 7-7 7' />
-                </svg>
-                Télécharger un article
-              </button>
-            </a>
+      <div className='flex flex-col gap-y-4'>
+        <form onSubmit={handleSubmit}>
+          <div className='w-full mb-4 max-h-[60px] rounded-3xl overflow-hidden bg-white text-black text-lg font-bold relative border-4 border-grey '>
+            <input
+              type='text'
+              name='link'
+              placeholder='   Entrez le lien ici'
+              className='w-full h-full p-4 rounded-3xl bg-transparent text-black placeholder-black'
+              onChange={(e) => setDownloadLink(e.target.value)}
+            />
+            <a href={downloadLink} target='_blank' rel='noopener noreferrer'>
+                 <button type='button' className='absolute right-0 top-0 bottom-0 p-4'>
+      <span>
+        <FontAwesomeIcon icon={faDownload} />
+      </span>       
+    </button>
+  </a>
+
           </div>
-        </div>
+        </form>
+      </div>
+    </div>
+
+
+
       </div>
     </div>
   );
