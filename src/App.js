@@ -31,6 +31,7 @@ function App() {
         <Route path="/:typ/:usern" element={<  Parmetres />} />
         <Route path="/home/utilisateur" element={<  Recherche />} />
         <Route path="/home" element={<  Recherche />} />
+        <Route path="/home/moderateur" element={<  PageModer />} />
 
         <Route path="/home/admin" element={<  Pageadmin />} />
         <Route path="/favoris" element={<  MesFavoris />} />

@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import Nav1 from './Nav1';
 import ArticleModer from './ArticleModer';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Article from './Article';
+import {useNavigate } from 'react-router-dom';
 
 const PageModer = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [selectedArticlee, setSelectedArticlee] = useState(null);
-
+  const type=localStorage.getItem('type');
+  const navigate = useNavigate();
+  const [articlee, setArticlee] = useState();
+  const fetchArticlees = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/articlee/${id}/`);
+      const data = await response.json();
+      setArticlee(data); // Corrected line
+    } catch (error) {
+      console.error('Error fetching articles:', error);
+      alert("error");
+    }
+  };
   const [articles, setArticles] = useState([
     {
       titre: 'Premier article',
@@ -31,23 +43,40 @@ const PageModer = () => {
       textuel: 'Texte 2',
     },
   ]);
+  useEffect(() => {
+    fetchArticles();
+    const isUserSignedIn = () => {
+      const token = localStorage.getItem('token');
+      return !!token;
+    };
 
-  const handleEditArticle = (article) => {
-    setSelectedArticle((prevSelectedArticle) =>
-      prevSelectedArticle === article ? null : article
-    );
-  };
+    if (!isUserSignedIn()) {
+      navigate('/login'); 
+    }  else {
+      if (type !== 'moderateur') {
+        navigate('/unauthorized');
+      }
+    }
 
-  const handleDeleteArticle = (article) => {
-    const updatedArticles = articles.filter((a) => a !== article);
+  
+  }, [type,navigate]);
 
-    setArticles(updatedArticles);
 
-    if (selectedArticle === article) {
-      setSelectedArticle(null);
+  const fetchArticles = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/non-treated-articles/');
+      const data = await response.json();
+      setArticles(data); // Corrected line
+    } catch (error) {
+      console.error('Error fetching articles:', error);
+      alert("error");
     }
   };
-
+  const Select=(article,id)=>{
+    setSelectedArticle(article);
+    fetchArticlees(id);
+  }
+  
   const handleArticleClick = (article) => {
     setSelectedArticlee(article);
   };
@@ -60,7 +89,9 @@ const PageModer = () => {
     setArticles(updatedArticles);
     setSelectedArticle(null);
   };
-
+  const validate=(id)=>{
+    
+  }
   return (
     
 
@@ -71,27 +102,17 @@ const PageModer = () => {
       <div className='w-1/2 p-4 mr-4'>
         <h2 className='text-2xl font-bold mb-4 text-indigo-700'>Articles Téléchargés</h2>
         {articles.map((article, index) => (
+        
           <div
             key={index}
             className='mt-5 p-4 border border-solid border-2 border-gray-300 rounded-md cursor-pointer hover:bg-gray-100'
             onClick={() => handleArticleClick(article)}
-          >
+          > 
             <div className='flex items-center justify-between'>
-              <div>{article.titre}</div>
-              <div className='flex items-center'>
-                <button
-                  className='mr-2 p-2 bg-indigo-700 text-white rounded-md text-sm'
-                  onClick={() => handleEditArticle(article)}
-                >
-                  <FontAwesomeIcon icon={faEdit} />
-                </button>
-                <button
-                  className='p-2 bg-indigo-700 text-white rounded-md text-sm'
-                  onClick={() => handleDeleteArticle(article)}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </div>
+              <div>{article.title}</div>
+              <div className="flex space-x-2">
+      
+    </div>
             </div>
           </div>
         ))}
@@ -99,26 +120,31 @@ const PageModer = () => {
 
       <div className='w-1/2 p-4 ml-4'>
         <h2 className='text-2xl font-bold mb-4 text-indigo-700'>Article Sélectionné</h2>
-        {selectedArticle ? (
+        {selectedArticle && (
           <div className='border border-solid border-indigo-700 p-4'>
             <ArticleModer
-              article={selectedArticle}
-              onSaveEdit={handleSaveEdit}
-              onCancelEdit={() => setSelectedArticle(null)}
+              article={articlee}
+              id={articlee.id}
             />
           </div>
-        ) : (
-          <p className='mt-16 w-full mx-auto rounded-3xl transition-all hover:scale-1.01 ease-in-out py-4 text-black text-lg font-bold'>
-            Aucun article sélectionné
-          </p>
         )}
 
         {selectedArticlee ? (
           <div className='mt-8 border border-solid border-indigo-700 p-4'>
             <Article
-              article={selectedArticlee}
-              onSaveEdit={handleSaveEdit}
-              onCancelEdit={() => setSelectedArticlee(null)}
+          
+                             article={{
+                                 id:selectedArticlee.id,
+                                 titre:selectedArticlee.title,
+                                 auteur:selectedArticlee.auteur,
+                                 institution:selectedArticlee.institution,
+                                 resume:selectedArticlee.title,
+                                 motcle: selectedArticlee.motcle,
+                                 reference: selectedArticlee.reference,
+                                 pdf: selectedArticlee.pdf_url,
+                                 textuel: selectedArticlee.textuel
+                             }}
+                         
             />
           </div>
         ) : (

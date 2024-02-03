@@ -1,148 +1,274 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-
-/**
- * Composant représentant un article avec des détails tels que le titre, l'auteur, l'institution, le résumé, etc.
- *
- * @component
- * @param {object} props - Les propriétés du composant.
- * @param {object} props.article - Les détails de l'article.
- * @param {string} props.article.titre - Le titre de l'article.
- * @param {string} props.article.auteur - L'auteur de l'article.
- * @param {string} props.article.institution - L'institution de l'article.
- * @param {string} props.article.resume - Le résumé de l'article.
- * @param {string} props.article.motcle - Le mot-clé de l'article.
- * @param {string} props.article.reference - Les références de l'article.
- * @param {string} props.article.pdf - Le lien PDF de l'article.
- * @param {string} props.article.textuel - Le contenu textuel de l'article.
- * @returns {JSX.Element} Composant React représentant un article.
- */
-
+import { faEdit, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
 const Article = ({ article }) => {
-    const [isFavorite, setIsFavorite] = useState(false);
-    const id=localStorage.getItem('id');
-    const type=localStorage.getItem('type');
-    const updatedFavorites = [...data.favoris, newFavorite];
-    const newFavorite = {
-      id: id, // ID of the new article
-      title: article.titre,
-      abstract: article.abstract,
-      authors: article.auteur, // Example author
-      institutions: article.institution, // Example institution
-      keywords: article.motcle, // Example keyword
-      pdf_url: article.pdf, // Example PDF URL
-      references: article.refrence, // Example references
-      date_created: new Date().toISOString(), // Current date
-    };
-    const handleHeartClick = () => {
-      setIsFavorite(!isFavorite);
-  
-      // Ajouter/Retirer l'article des favoris ici (vous pouvez implémenter cette logique)
-     
-      if (!isFavorite) {
-        console.log('Ajouter aux favoris :', article.titre);
-        // Effectuer l'action d'ajout aux favoris
-      } else {
-        console.log('Retirer des favoris :', article.titre);
-        // Effectuer l'action de retrait des favoris
-      }
-    }
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:8000/api/your_endpoint/');
-        const data = await response.json();
-        return data.favoris;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error; // You can handle the error as needed
-      }
-    };
-    const [data,SetData]=useState();
-    const ajouterFav = () => {
-      try {
-        const response =  fetch(`http://127.0.0.1:8000/api/${type}/${id}/`, {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const id = localStorage.getItem('id');
+  const type = localStorage.getItem('type');
+  const [data, setData] = useState({});
+  const navigate = useNavigate();
+
+  const [editMode, setEditMode] = useState(false);
+
+  const handleEdit = () => {
+    setEditMode(true);
+  };
+
+  const handleEditArticle = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/update-article/${id}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          favoris: updatedFavorites,
-        }),
-
+        body: JSON.stringify(data), // Send the updated data directly
       });
-      const data = response.json();
-      
+  
       if (response.ok) {
-        console.log('information changed successfully');
-        alert ('Succées');
-        window.location.reload()
-        // Additional logic after successful password change
+        console.log('Information changed successfully');
+        alert('Succès');
+        navigate(`/home/${type}`);
       } else {
-        alert (`erreur`);
-        console.error('error:', data.detail);
-        // Handle error, display message, etc.
-      } 
-      } catch (error) {
-        console.error('Error creating user:', error);
-        alert('erreur');
+        alert('Erreur');
+        console.error('Error:', data.detail);
       }
-   
-    };
-    useEffect()
-    {SetData(fetchData());
-    };
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  const treatArticle = async (articleId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/treat-article/${articleId}/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        console.log('Article treated successfully');
+        // Additional logic after successful treatment
+      } else {
+        const data = await response.json();
+        console.error('Error treating article:', data.error);
+        // Handle error, display message, etc.
+      }
+    } catch (error) {
+      console.error('Error treating article:', error);
+      // Handle error, display message, etc.
+    }
+  };
+  
+  const handleSave = (id) => {
+    handleEditArticle(id);
+    treatArticle(id);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const fetchArticle = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/article-details/${article.id}`);
+      const data = await response.json();
+      setData(data); // Corrected line
+    } catch (error) {
+      console.error('Error fetching articles:', error);
+    }
+  };
+
+  const ajouterFav = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/add-article/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          utilisateur_id: id,
+          article_id: article.id,
+        }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Information changed successfully');
+        alert('Succès');
+        window.location.reload();
+      } else {
+        alert('Erreur');
+        console.error('Error:', data.detail);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Erreur');
+    }
+  };
+
+  const handleHeartClick = () => {
+    setIsFavorite(!isFavorite);
+    ajouterFav();
+  };
+
+  useEffect(() => {
+    fetchArticle();
+  }, []);
+
   return (
-    <div className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'>
-        <div className="pt-4">
-          <p className="pr-2 font-bold">Titre: </p>
-          {article.titre}
-        </div>
+    <div className='w-full border-2 border-gray-400 rounded-xl p-4 mt-4 bg-transparent'>
+      <div className="pt-4">
+        <p className="pr-2 font-bold">Titre: </p>
+        {editMode ? (
+          <input
+            type="text"
+            name="title"
+            value={data.title}
+            onChange={handleChange}
+            className="border-2 border-gray-300 p-2 rounded-md"
+          />
+        ) : (
+          <p>{data.title}</p>
+        )}
+      </div>
 
-        <div className="pt-4">
-          <p className="pr-2 font-bold">Auteurs: </p>
-          {article.auteur}
-        </div>
+      <div className="pt-4">
+        <p className="pr-2 font-bold">Auteurs: </p>
+        {editMode ? (
+          <input
+            type="text"
+            name="authors_names"
+            value={data.authors_names}
+            onChange={handleChange}
+            className="border-2 border-gray-300 p-2 rounded-md"
+          />
+        ) : (
+          <p>{data.authors_names}</p>
+        )}
+      </div>
 
-        <div className="pt-4">
-          <p className="pr-2 font-bold">Institutions: </p>
-          {article.institution}
-        </div>
+      <div className="pt-4">
+        <p className="pr-2 font-bold">Institutions: </p>
+        {editMode ? (
+          <input
+            type="text"
+            name="institutions_names"
+            value={data.institutions_names}
+            onChange={handleChange}
+            className="border-2 border-gray-300 p-2 rounded-md"
+          />
+        ) : (
+          <p>{data.institutions_names}</p>
+        )}
+      </div>
 
-        <div className="pt-4">
-          <p className="pr-2 font-bold">Résumé: </p>
-          <p className="text-black">{article.resume}</p>
-        </div>
+      <div className="pt-4">
+        <p className="pr-2 font-bold">Résumé: </p>
+        {editMode ? (
+          <textarea
+            name="abstract"
+            value={data.abstract}
+            onChange={handleChange}
+            className="border-2 border-gray-300 p-2 rounded-md"
+          />
+        ) : (
+          <p>{data.abstract}</p>
+        )}
+      </div>
 
-        <div className="pt-4">
-          <p className="pr-2 font-bold">Mots clés: </p>
-          {article.motcle}
-        </div>
+      <div className="pt-4">
+        <p className="pr-2 font-bold">Mots clés: </p>
+        {editMode ? (
+          <input
+            type="text"
+            name="keywords_names"
+            value={data.keywords_names}
+            onChange={handleChange}
+            className="border-2 border-gray-300 p-2 rounded-md"
+          />
+        ) : (
+          <p>{data.keywords_names}</p>
+        )}
+      </div>
 
-        <div className="pt-4">
-          <p className="pr-2 font-bold">Références: </p>
-          {article.reference}
-        </div>
+      <div className="pt-4">
+        <p className="pr-2 font-bold">Références: </p>
+        {editMode ? (
+          <input
+            type="text"
+            name="references_citations"
+            value={data.references_citations}
+            onChange={handleChange}
+            className="border-2 border-gray-300 p-2 rounded-md"
+          />
+        ) : (
+          <p>{data.references_citations}</p>
+        )}
+      </div>
 
-        <div className="pt-4">
-          <Link to={article.pdf}>
+      <div className="pt-4">
+        <Link to={data.pdf_url}>
           <p className="pr-2 font-bold">Le lien pdf: </p>
-          </Link>
-        </div>
+        </Link>
+      </div>
 
-        <div className="pt-4 pb-8">
-          <p className="pr-2 font-bold">L'article en format textuel: </p>
-          {article.textuel}
-        </div>
+      <div className="pt-4 pb-8">
+        <p className="pr-2 font-bold">L'article en format textuel: </p>
+        {editMode ? (
+          <textarea
+            name="text"
+            value={data.text}
+            onChange={handleChange}
+            className="border-2 border-gray-300 p-2 rounded-md"
+          />
+        ) : (
+          <p>{data.text}</p>
+        )}
+      </div>
 
-        <div
-          className={`cursor-pointer`}
-          onClick={handleHeartClick}
-        >
-          <ion-icon  onClick={ajouterFav} name="heart" size="large" style={{ color: isFavorite ? 'red' : 'black' }}></ion-icon>
-        </div>
-    
+      <div className="pt-4">
+        {type === 'utilisateur' ? (
+          <div
+            className={`cursor-pointer`}
+            onClick={handleHeartClick}
+          >
+            <ion-icon name="heart" size="large" style={{ color: isFavorite ? 'red' : 'black' }}></ion-icon>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center">
+            <button
+              className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none mr-2"
+              onClick={() => handleSave(article.id)}
+            >
+              <FontAwesomeIcon icon={faCheck} className="mr-1" />
+            </button>
+            {editMode ? (
+              <button
+                className="flex items-center justify-center bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none mr-2"
+                onClick={() => setEditMode(false)}
+              >
+                <FontAwesomeIcon icon={faTimes} className="mr-1" />
+              </button>
+            ) : (
+              <button
+                className="flex items-center justify-center bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none mr-2"
+                onClick={handleEdit}
+              >
+                <FontAwesomeIcon icon={faEdit} className="mr-1" />
+              </button>
+            )}
+
+          </div>
+        )}
+      </div>
     </div>
   );
 };

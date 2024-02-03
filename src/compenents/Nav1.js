@@ -159,7 +159,7 @@ const Nav1 = () => {
     <button onClick={handleNavigate}>Acceuil</button>
     
     </span>
-  {type !== 'utilsateur' && (
+  {type == 'utilisateur' && (
     <span className='md:ml-8 text-xl md:my-0 my-7 '>
       <Link to='/favoris'>Mes Favoris</Link>
     </span>

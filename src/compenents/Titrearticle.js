@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {  useEffect,useState } from 'react';
 import Article from './Article';
 
 const Titrearticle = ({ article }) => {
     const [showArticle, setShowArticle] = useState(false);
-
+  
     const handleAddClick = () => {
         setShowArticle(!showArticle);
     }
@@ -13,7 +13,8 @@ const Titrearticle = ({ article }) => {
             <div className="pr-4 pb-4 md:pr-0 flex items-center">
                 <div className="flex-1">
                     <div className="pt-4 font-bold font-serif text-2xl">
-                        {article.titre}
+                        {article.titre} 
+                        {Article.abstract}
                     </div>
                 </div>
                 <div
@@ -28,6 +29,7 @@ const Titrearticle = ({ article }) => {
             {showArticle && (
                 <Article
                     article={{
+                        id:article.id,
                         titre:article.titre,
                         auteur:article.auteur,
                         institution: article.institution,

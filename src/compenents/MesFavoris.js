@@ -11,16 +11,21 @@ import Article from './Article';
  * @component
  */
 
-
-
 function MesFavoris() {
   const [articles, setArticles] = useState([]);
   const id=localStorage.getItem('id');
+  useEffect(() => {
+    fetchArticles();
+     
+   
+   }, []);
+  
+  
   const fetchArticles = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/utilisateur/${id}`);
+      const response = await fetch(`http://127.0.0.1:8000/api/favoris/${id}`);
       const data = await response.json();
-      setArticles(data.favoris); // Corrected line
+      setArticles(data); // Corrected line
     } catch (error) {
       console.error('Error fetching articles:', error);
       alert("error");
@@ -28,17 +33,19 @@ function MesFavoris() {
   };
 
     return (
-      <div>
+      <div className='mt-10'>
     <Nav1 user={{ name: 'derr', fullName: 'John Doe' , mail:'john@gmail.com'}}/>
 
         <div className="container mx-auto p-4">
           
         </div>
+        
         {articles.map((article, index) => (
 
 <div>
 <Titrearticle
 article={{
+  id:article.id,
 titre: article.title,
 auteur: article.authors.map((author, index) => <span key={index}>{author.name}, </span>),
 institutions: article.institutions.map((institution, index) => <span key={index}>{institution.name}, </span>),

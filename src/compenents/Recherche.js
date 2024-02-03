@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Titrearticle from './Titrearticle';
 
 /**
@@ -7,27 +6,17 @@ import Titrearticle from './Titrearticle';
  */
 import React, { useState ,useEffect} from 'react';
 import Article from './Article.js';
-
+import Nav1 from './Nav1';
 import {useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
-  const [searchText, setSearchText] = useState('');
   const type=localStorage.getItem('type');
-  const [searchResult, setSearchResult] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [searchTextFiltre, setSearchTextFiltre] = useState('');
   const [filter,setFilter]=useState();
-  const handleInputChangeFiltre = (e) => {
-    setSearchTextFiltre(e.target.value);
-  };
 
 
   const navigate = useNavigate();
   const typ=localStorage.getItem('type');
-  const handleInputChange = (e) => {
-    setSearchText(e.target.value);
-  };
-
 
   
   const handleSearch = () => {
@@ -61,6 +50,8 @@ export default function SearchBar() {
   };
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
+  const [keyword,setKeyword]=useState('');
+
 
   const fetchArticles = async () => {
     try {
@@ -72,26 +63,34 @@ export default function SearchBar() {
       alert("error");
     }
   };
-  const handlefilter = async () => {
+  const handleFilter = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/search/', {
+      const response = await fetch('http://127.0.0.1:8000/api/search-and-filter/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          searchText: search,
-          searchTextFiltre: searchTextFiltre,
+          word: search,
+          filter_field: filter,
         }),
+
       });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+  
       const data = await response.json();
-      setSearchResult(data);
+      setArticles(data);
+      
     } catch (error) {
       console.error('Error searching articles:', error);
     }
   };
+  
  useEffect(() => {
-   fetchArticles();
+    handleFilter();
     const isUserSignedIn = () => {
       const token = localStorage.getItem('token');
       return !!token;
@@ -120,7 +119,7 @@ export default function SearchBar() {
       className="bg-blue-100 px-4 py-3 flex-1 focus:outline-none"
     />
     <button
-      onClick={handleSearch}
+      onClick={handleFilter}
       className="bg-blue-100 hover:bg-rose-100 p-3 flex items-center justify-center"
     >
       <span className="text-black">
@@ -142,10 +141,10 @@ export default function SearchBar() {
             <div className="absolute border bg-blue-100 border-solid border-2 border-blue-100 p-4 mt-72 rounded-md mt-1 z-10 "
             style={{ left: "-140px", width: "200px" }}>
           
-              <div className='pb-2 flex  text-indigo-700 font-bold cursor-pointer' onClick={()=>setFilter('keyword.name')}>-Les mots clés</div>
-              <div className='pb-2 flex  text-indigo-700 font-bold cursor-pointer ' onClick={()=>setFilter('authors.name')}>-Les auteurs</div>
-              <div className='pb-2 flex  text-indigo-700 font-bold cursor-pointer' onClick={()=>setFilter('keyword.name')}>-Les institutions</div>
-              <div className='pb-2 flex text-indigo-700 font-bold cursor-pointer' onClick={()=>setFilter('keyword.name')}>-Période entre deux dates de publication</div>
+          <button onClick={() => setFilter('keywords')}className='pb-2 flex text-indigo-700 font-bold cursor-pointer'>-Les mots clés
+</button>              <button  className='pb-2 flex  text-indigo-700 font-bold cursor-pointer ' onClick={()=>setFilter('authors')}>-Les auteurs</button>
+             <button className='pb-2 flex  text-indigo-700 font-bold cursor-pointer' onClick={()=>setFilter('institutions')}>-Les institutions</button>
+             <button className='pb-2 flex text-indigo-700 font-bold cursor-pointer' onClick={()=>setFilter()}>-Pas de filtre</button>
             </div>
           )}
         </div>
@@ -157,6 +156,7 @@ export default function SearchBar() {
       <div>
 <Titrearticle
   article={{
+    id:article.id,
     titre: article.title,
     auteur: article.authors.map((author, index) => <span key={index}>{author.name}, </span>),
     institutions: article.institutions.map((institution, index) => <span key={index}>{institution.name}, </span>),
