@@ -111,6 +111,40 @@ const Pageadmin = () => {
       const newUsername = e.target.value;
       setUsername(newUsername);
   };
+  const UpdateInfo = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/moderateur/${id}/`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: {
+            username: username === u ? "None" : username,
+            email: email,
+          },
+          first_name: firstName,
+          family_name: familyName,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log('Information changed successfully');
+        alert('Succès');
+        navigate(`/home/admin`);
+      } else {
+        console.error('Error:', data.detail);
+        alert('Erreur');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Erreur');
+    } finally {
+      // This part should only execute if there's no navigation in the try block
+    }
+  };
   
   const handleEmailChange = async (e) => {
       const newEmail = e.target.value;
@@ -261,7 +295,7 @@ const [S,setS]=useState(-1);
         </div>
         <div>
         {S === index ? (
-    <button onClick={()=>handleEditModerateur(moderator.id)}>Save</button>
+    <button onClick={()=>UpdateInfo(moderator.id)}>Save</button>
 ) : (
     <>
         <FontAwesomeIcon

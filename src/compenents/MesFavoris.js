@@ -43,6 +43,7 @@ function MesFavoris() {
         {articles.map((article, index) => (
 
 <div>
+  
 <Titrearticle
 article={{
   id:article.id,
