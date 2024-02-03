@@ -11,7 +11,6 @@ import img from '../images/Group 2.png';
 export default function Home1() {
   return (
     <div className=" w-full relative pt-44 pb-10 max-w-3xl mx-auto overflow-hidden">
-    <div className=" w-full  absolute inset-0 bg-blue-200 opacity-70 rounded-3xl shadow-2xl mx-4"></div>
     <img
       src={img}
       alt="Description de l'image"
