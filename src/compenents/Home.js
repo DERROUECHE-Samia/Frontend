@@ -6,6 +6,15 @@ import Nav from "./Nav";
 import About from "./About";
 import Footer from "./Footer";
 
+
+/**
+ * Composant représentant la page d'accueil de l'application.
+ *
+ * @component
+ * @returns {JSX.Element} Composant React représentant la page d'accueil.
+ */
+
+
 export default function Home() {
   return (
     <>

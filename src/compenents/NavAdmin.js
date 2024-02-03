@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 
 
 /**
- * Composant représentant la section "Rencontrer Notre Équipe".
+ * Composant de barre de navigation pour le panneau d'admin.
  * @component
- *
- * @returns {JSX.Element} - Élément React représentant la section.
  */
 
 

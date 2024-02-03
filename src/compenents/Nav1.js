@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 const Nav1 = () => {
   
   const [showMenu, setShowMenu] = useState(false);
@@ -33,7 +32,7 @@ const Nav1 = () => {
             </a>
             <a
               href="/favorites"
-              className="text-pink-700 hover:text-pink-300 font-[Kanit]"
+              className="text-white hover:text-pink-300 font-[Kanit]"
             >
               Mes Favoris
             </a>

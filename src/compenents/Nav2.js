@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+/**
+ * Composant de barre de navigation alternative.
+ * @component
+ */
+
+
 export default function Nav2() {
    const navigate = useNavigate();
 
@@ -14,7 +21,7 @@ export default function Nav2() {
          <div className='md:flex items-center   justify-between bg-white py-4 md:px-10 px-7' >
           <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800'>
           <span className='text-3xl text-indigo-600 mr-1 pt-2'>
-          <ion-icon name="bug"></ion-icon>
+          <ion-icon name="book"></ion-icon>
           </span>
           RTcleByte
           </div>

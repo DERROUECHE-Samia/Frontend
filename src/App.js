@@ -20,7 +20,7 @@ import PageModer from './compenents/PageModer';
 function App() {
   return (
     
-    /*<Router>
+    <Router>
       <Routes>
        <Route path="/login" element={<Connexion />} />
        
@@ -29,17 +29,16 @@ function App() {
         <Route path="/signin" element={<Inscription />} />
         <Route path="/thanks" element={<  ThanksPage />} />
         <Route path="/:typ/:usern" element={<  Parmetres />} />
-        <Route path="/home/user" element={<  Recherche />} />
+        <Route path="/home/utilisateur" element={<  Recherche />} />
+        <Route path="/home" element={<  Recherche />} />
+
         <Route path="/home/admin" element={<  Pageadmin />} />
 
 
       </Routes>
-    </Router> */
+    </Router> 
 
-    <div>
-      <PageModer/>
-    </div>
-     
+   
 
      
      

@@ -8,6 +8,11 @@ import AjouterModerateur from './AjouterModerateur';
 import AjouterArticle from './AjouterArticle';
 import {useParams } from 'react-router-dom';
 
+/**
+ * Composant de la page d'admin.
+ * @component
+ */
+
 const Pageadmin = () => {
   
   const [showForm, setShowForm] = useState(false);

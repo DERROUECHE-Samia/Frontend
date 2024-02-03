@@ -67,6 +67,17 @@ export default function About() {
           <p className="font-semibold">Keddour Dina</p>
           <p>Back end Developper</p>
         </div>
+
+        <div className="text-center mx-4">
+          <img
+            alt="Image de Soltani Rahma"
+            className="w-full h-full max-w-full mx-auto mb-4"
+            style={{ width: '100%', height: '81%'}}
+          />
+          <p className="font-semibold">Soltani Rahma </p>
+          <p>Full Stack Developper</p>
+        </div>
+
       </div>
     </div>
   );

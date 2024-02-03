@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import img  from '../images/Group 4.png' ; 
 
+/**
+ * Composant représentant la troisième section de la page d'accueil avec une image en défilement.
+ *
+ * @component
+ * @returns {JSX.Element} Composant React représentant la troisième section.
+ */
+
+
 export default function Home3() {
   const [showImage, setShowImage] = useState(false);
 

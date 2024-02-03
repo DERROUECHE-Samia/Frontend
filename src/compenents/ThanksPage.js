@@ -2,6 +2,12 @@ import React from "react";
 import img from "../images/top5.jpeg";
 import Nav2 from "./Nav2";
 
+/**
+ * Composant de la page de remerciement après l'inscription.
+ * @returns {JSX.Element} Composant React.
+ */
+
+
 export default function ThanksPage() {
   return (
     <>
