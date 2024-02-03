@@ -13,18 +13,18 @@ export default function Nav() {
    const navigate = useNavigate();
 
    let Links =[ 
-      {name:"HOME", link:"#section1"},
-      {name:"ABOUT", link:"#section4"},
+      {name:"ACCEUIL", link:"#section1"},
+      {name:"A PROPOS", link:"#section4"},
       {name:"SERVICES", link:"#section2"},
-      {name:"CONTACT", link:"#section5"},
+      {name:"CONTACTEZ-NOUS", link:"#section5"},
    ];
    let [open, setOpen] = useState(false);
    return(
       <div className='shadow-md w-full fixed top-0 left-0' >
          <div className='md:flex items-center   justify-between bg-white py-4 md:px-10 px-7' >
           <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800'>
-          <span className='text-3xl text-indigo-600 mr-1 pt-2'>
-          <ion-icon name="bug"></ion-icon>
+          <span className='text-3xl text-indigo-700 mr-1 pt-2'>
+          <ion-icon name="book"></ion-icon>
           </span>
           RTcleByte
           </div>
@@ -40,14 +40,14 @@ export default function Nav() {
                </li>
             ))
             }
-            <Button className='bg-095da'>
+            <Button className='bg-indigo-700'>
              <Link to="/login">
               Connexion
              </Link>
             </Button>
 
 
-          <Button className='bg-095da' >
+          <Button className='bg-indigo-700' >
           <Link to="/signin">
             Commencez l'expéerience 
             </Link>

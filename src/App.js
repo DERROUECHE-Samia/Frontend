@@ -15,9 +15,11 @@ import './App.css';
 import ThanksPage from './compenents/ThanksPage';
 import Pageadmin from './compenents/Pageadmin';
 import Parmetres from './compenents/Parametre_compte'
+import PageModer from './compenents/PageModer';
 
 function App() {
   return (
+    
     <Router>
       <Routes>
        <Route path="/login" element={<Connexion />} />
@@ -35,8 +37,9 @@ function App() {
 
 
       </Routes>
-    </Router>
-     
+    </Router> 
+
+   
 
      
      

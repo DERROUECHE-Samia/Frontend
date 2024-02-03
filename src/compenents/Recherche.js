@@ -1,9 +1,13 @@
+import React, { useState } from 'react';
 import Titrearticle from './Titrearticle';
 
-
+/**
+ * Composant de la barre de recherche avec filtres.
+ * @returns {JSX.Element} Composant React.
+ */
 import React, { useState ,useEffect} from 'react';
 import Article from './Article.js';
-import Nav1 from "./Nav1.js";
+
 import {useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
@@ -107,8 +111,6 @@ export default function SearchBar() {
   return (
     <>
     <Nav1/>
-    
-
       <div className="flex items-center pt-16 pb-8 justify-center mt-4">
   <div className="flex w-1/3 border border-black rounded-full overflow-hidden">
     <input

@@ -108,18 +108,18 @@ return (
 
 
 
-        <button className='font-medium underline mt-5 text-base text-violet-400'>Mot de passe oublié?</button>
+        <button className='font-medium underline mt-5 text-base text-indigo-700'>Mot de passe oublié?</button>
 
 
 <div className='mt-5 flex flex-col gap-y-4'>
-<button className= ' active:scale-95 active:duration-75 transition-all hover:scale-{1.01} ease-in-out py-4 rounded-xl  bg-violet-500 text-white  text-lg  font-bold ' 
+<button className= ' active:scale-95 active:duration-75 transition-all hover:scale-{1.01} ease-in-out py-4 rounded-xl  bg-indigo-700 text-white  text-lg  font-bold ' 
 onClick={handleLogin}> Connexion </button>
 </div>
 
 
 <p>
               Vous n'avez pas de compte ?
-              <div className='font-medium underline mt-5 text-base text-violet-400'>
+              <div className='font-medium underline mt-5 text-base text-indigo-700'>
               Inscrivez-vous ici! 
               </div>
             

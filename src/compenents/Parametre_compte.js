@@ -215,6 +215,7 @@ const handleUsernameChange = async (e) => {
                 <div className="flex items-center">
                   <p className="pr-2 font-bold text-xl">Nom: </p>
                   {changebutton ? (
+                    
                     <input
                       type="text"
                       name="fullName"

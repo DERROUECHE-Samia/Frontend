@@ -373,6 +373,7 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
         <label className='text-lg font-medium'>
             Email  
             </label>
+
             {email.length > 0 ? (
   isEmailTaken ? (
     <p style={{ color: 'red' }}>Email déjà pris.</p>
@@ -421,7 +422,7 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
         </div>
                       <div className='mt-5 flex flex-col gap-y-4'>
                 <button onClick={handleSendCode} className='active:scale-95 active:duration-75 
-                transition-all hover:scale-1.01 ease-in-out py-4 rounded-xl bg-violet-500 text-white text-lg font-bold'>
+                transition-all hover:scale-1.01 ease-in-out py-4 rounded-xl bg-indigo-700 text-white text-lg font-bold'>
                   Créer un compte
                 </button>
               </div>

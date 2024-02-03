@@ -94,8 +94,7 @@ const Article = ({ article }) => {
     {SetData(fetchData());
     };
   return (
-    <div className="md:pl-8 md:pr-96">
-      <div className="border border-solid border-2 border-black pl-4 pr-4 pb-4 md:pr-0">
+    <div className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'>
         <div className="pt-4">
           <p className="pr-2 font-bold">Titre: </p>
           {article.titre}
@@ -143,7 +142,7 @@ const Article = ({ article }) => {
         >
           <ion-icon  onClick={ajouterFav} name="heart" size="large" style={{ color: isFavorite ? 'red' : 'black' }}></ion-icon>
         </div>
-      </div>
+    
     </div>
   );
 };
