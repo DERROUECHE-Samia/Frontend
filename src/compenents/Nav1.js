@@ -1,10 +1,18 @@
-
 import React, { useState } from 'react';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+/**
+ * Composant représentant la section "Rencontrer Notre Équipe".
+ * @component
+ *
+ * @returns {JSX.Element} - Élément React représentant la section.
+ */
+
+
+/*
 const Nav1 = () => {
   
   const [showMenu, setShowMenu] = useState(false);
@@ -32,7 +40,7 @@ const Nav1 = () => {
             </a>
             <a
               href="/favorites"
-              className="text-white hover:text-pink-300 font-[Kanit]"
+              className="text-pink-700 hover:text-pink-300 font-[Kanit]"
             >
               Mes Favoris
             </a>
@@ -85,9 +93,101 @@ const Nav1 = () => {
     </nav>
   );
 }
+*/
+import { useEffect } from 'react';
 
+const Nav1 = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const username = localStorage.getItem('username');
+  const id = localStorage.getItem('id');
+  const type= localStorage.getItem('type');
+  const token=localStorage.getItem('token');
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8000/api/${type}/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setUserData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+    }, [type,id]);
+  const handleDropdownClick = () => {
+    setShowDropdown(!showDropdown);
+  };
+  const GoToProfile = () => {
+    navigate(`/${type}/${username}`)
+  };
+  const LogOut= () => {
+    localStorage.removeItem('id');
+    localStorage.removeItem('id_user');
+    localStorage.removeItem('type');
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    navigate('/login');
+    /*
+    try {
+      const response = axios.post('http://127.0.0.1:8000/api/logout/', {
+        refresh_token: token
+      });
+      return response.data;
+    
+    } catch (error) {
+      console.error('Error logging out:', error);
+      throw error;
+    }
+    */
+  };
+  const handleNavigate = () => {
+    navigate(`/home/${type}`); 
+  };
+ 
 
+  return (
+    <div className='shadow-md w-full fixed top-0 left-0 bg-blue-900 text-white'>
+  <div className='md:flex items-center justify-between py-4 md:px-10 px-7'>
+    <div className='flex items-center font-bold text-2xl cursor-pointer font-[Poppins]'>
+      <span className='text-3xl text-indigo-600 mr-1 pt-2'>
+        <ion-icon name="bug"></ion-icon>
+      </span>
+        RTcleByte
+        <span className='md:ml-8 text-xl md:my-0 my-7 '>
 
-
-
+             
+    <button onClick={handleNavigate}>Acceuil</button>
+    
+    </span>
+  {type === 'utilsateur' && (
+    <span className='md:ml-8 text-xl md:my-0 my-7 '>
+      <Link to='/user/favoris'>Mes Favoris</Link>
+    </span>
+  )}
+    </div>
+        <ul
+        className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-blue-900 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in`}
+      >
+        <Link onClick={handleDropdownClick}>{localStorage.getItem('username')}</Link>
+      </ul>
+      {showDropdown && (
+        <div className="absolute bg-white shadow-lg p-6 rounded-md mt-1 z-10 pb-12 flex flex-col items-center justify-center" style={{ right: "0px", top: "75px", width: "180px" }}>
+        <div className="flex items-center mb-4">
+          <div>
+            <p className="font-bold text-black">{userData.first_name} {userData.family_name}</p>
+          </div>
+        </div>
+        <button  onClick={GoToProfile} className="text-black font-serif hover:underline block mb-2" >
+          Paramètres du compte
+        </button>
+        <button onClick={LogOut} className="text-black font-serif hover:underline block mb-2">
+          Se déconnecter
+        </button>
+      </div>
+      )}
+      
+    </div>
+    </div>
+  );
+  }
 export default Nav1;

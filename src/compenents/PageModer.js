@@ -62,7 +62,12 @@ const PageModer = () => {
   };
 
   return (
+    
+
     <div className='mt-5 flex'>
+      
+      <Nav1/>
+      
       <div className='w-1/2 p-4 mr-4'>
         <h2 className='text-2xl font-bold mb-4 text-indigo-700'>Articles Téléchargés</h2>
         {articles.map((article, index) => (
