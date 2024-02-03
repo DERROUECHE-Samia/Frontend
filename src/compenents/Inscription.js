@@ -326,8 +326,13 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
         <label className='text-lg font-medium'>
                 Nom d'utilisateur  
                 </label>
-                {isUsernameTaken && <p style={{ color: 'red' }}>Nom d'utilisateur déjà pris.</p>}
-                {!isUsernameTaken && <p style={{ color: 'green' }}>Nom d'utilisateur disponible.</p>}
+                {username.length > 0 ? (
+  isUsernameTaken ? (
+    <p style={{ color: 'red' }}>Nom d'utilisateur déjà pris.</p>
+  ) : (
+    <p style={{ color: 'green' }}>Nom d'utilisateur disponible.</p>
+  )
+) : null}
 
                 <input 
                 className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
@@ -368,9 +373,14 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
         <label className='text-lg font-medium'>
             Email  
             </label>
-            
-            {isEmailTaken && <p style={{ color: 'red' }}>Email déjà pris.</p>}
-                {!isEmailTaken && <p style={{ color: 'green' }}>Email disponible.</p>}
+            {email.length > 0 ? (
+  isEmailTaken ? (
+    <p style={{ color: 'red' }}>Email déjà pris.</p>
+  ) : (
+    <p style={{ color: 'green' }}>Email disponible.</p>
+  )
+) : null}
+
             <input 
             className='w-full border-2  border-gray-400 rounded-xl p-4 mt-4 bg-transparent'
             

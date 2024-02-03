@@ -34,8 +34,6 @@ const Parmetres = ({ user }) => {
   const params = useParams();
   const { typ, usern } = params;
 
-  // Example of checking if typ and usern match certain values
-  const isCorrectUser = typ === 'desiredType' && usern === 'desiredUsername';
 
 
   const handleEmailChange = async (e) => {
@@ -119,50 +117,21 @@ const handleUsernameChange = async (e) => {
       if (response.ok) {
         console.log('information changed successfully');
         alert ('Succées');
-        window.location.reload()
-        // Additional logic after successful password change
+        navigate(`/${type}/${username}`);
       } else {
         alert (`erreur`);
         console.error('error:', data.detail);
-        // Handle error, display message, etc.
       }
     } catch (error) {
       console.error('Error:', error);
     } finally {
       localStorage.setItem('username',username);
-     navigate(`/${type}/${userData.username}`);
+     navigate(`/${type}/${username}`);
     }
   }
   };
 
-  const handlePasswordChange = async (oldPassword, newPassword,) => {
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/api/change-password/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          old_password: oldPassword,
-          new_password: newPassword,
-          id:userData.user.id,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log('Password changed successfully');
-        // Additional logic after successful password change
-      } else {
-        console.error('Failed to change password:', data.detail);
-        // Handle error, display message, etc.
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle unexpected errors
-    }
-  };
+  
 
   const fetchData = () => {
     fetch(`http://127.0.0.1:8000/api/${type}/${id}`)
@@ -221,7 +190,6 @@ const handleUsernameChange = async (e) => {
     
         <div className="ml-28 mt-28">
           <p className="font-bold text-2xl pb-4">Paramètres du compte</p>
-          {type}
           <div className="border shadow-lg p-12 mr-96">
             <div className="flex mb-2 pb-4">
               <div className="pl-6 pt-6">
@@ -313,7 +281,7 @@ const handleUsernameChange = async (e) => {
                 </button>
                 )}
                   
-                  {modal && <ChangePassword handlePasswordChange={handlePasswordChange} />}
+                  {modal && <ChangePassword/>}
                 </div>
               </div>
             </div>

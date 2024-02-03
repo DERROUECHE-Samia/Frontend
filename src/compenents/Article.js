@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 /**
@@ -21,7 +22,20 @@ import React, { useState } from 'react';
 
 const Article = ({ article }) => {
     const [isFavorite, setIsFavorite] = useState(false);
-  
+    const id=localStorage.getItem('id');
+    const type=localStorage.getItem('type');
+    const updatedFavorites = [...data.favoris, newFavorite];
+    const newFavorite = {
+      id: id, // ID of the new article
+      title: article.titre,
+      abstract: article.abstract,
+      authors: article.auteur, // Example author
+      institutions: article.institution, // Example institution
+      keywords: article.motcle, // Example keyword
+      pdf_url: article.pdf, // Example PDF URL
+      references: article.refrence, // Example references
+      date_created: new Date().toISOString(), // Current date
+    };
     const handleHeartClick = () => {
       setIsFavorite(!isFavorite);
   
@@ -35,43 +49,87 @@ const Article = ({ article }) => {
         // Effectuer l'action de retrait des favoris
       }
     }
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/your_endpoint/');
+        const data = await response.json();
+        return data.favoris;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // You can handle the error as needed
+      }
+    };
+    const [data,SetData]=useState();
+    const ajouterFav = () => {
+      try {
+        const response =  fetch(`http://127.0.0.1:8000/api/${type}/${id}/`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          favoris: updatedFavorites,
+        }),
 
+      });
+      const data = response.json();
+      
+      if (response.ok) {
+        console.log('information changed successfully');
+        alert ('Succées');
+        window.location.reload()
+        // Additional logic after successful password change
+      } else {
+        alert (`erreur`);
+        console.error('error:', data.detail);
+        // Handle error, display message, etc.
+      } 
+      } catch (error) {
+        console.error('Error creating user:', error);
+        alert('erreur');
+      }
+   
+    };
+    useEffect()
+    {SetData(fetchData());
+    };
   return (
     <div className="md:pl-8 md:pr-96">
       <div className="border border-solid border-2 border-black pl-4 pr-4 pb-4 md:pr-0">
         <div className="pt-4">
-          <p className="pr-2 font-bold">Titre de l'article: </p>
+          <p className="pr-2 font-bold">Titre: </p>
           {article.titre}
         </div>
 
         <div className="pt-4">
-          <p className="pr-2 font-bold">L'Auteur de l'article: </p>
+          <p className="pr-2 font-bold">Auteurs: </p>
           {article.auteur}
         </div>
 
         <div className="pt-4">
-          <p className="pr-2 font-bold">L'Institution de l'article: </p>
+          <p className="pr-2 font-bold">Institutions: </p>
           {article.institution}
         </div>
 
         <div className="pt-4">
-          <p className="pr-2 font-bold">Résumé de l'article: </p>
+          <p className="pr-2 font-bold">Résumé: </p>
           <p className="text-black">{article.resume}</p>
         </div>
 
         <div className="pt-4">
-          <p className="pr-2 font-bold">Mot clé de l'article: </p>
+          <p className="pr-2 font-bold">Mots clés: </p>
           {article.motcle}
         </div>
 
         <div className="pt-4">
-          <p className="pr-2 font-bold">3 Références de l'article: </p>
+          <p className="pr-2 font-bold">Références: </p>
           {article.reference}
         </div>
 
         <div className="pt-4">
-          <p className="pr-2 font-bold">Le lien pdf de l'article: </p>
-          {article.pdf}
+          <Link to={article.pdf}>
+          <p className="pr-2 font-bold">Le lien pdf: </p>
+          </Link>
         </div>
 
         <div className="pt-4 pb-8">
@@ -83,7 +141,7 @@ const Article = ({ article }) => {
           className={`cursor-pointer`}
           onClick={handleHeartClick}
         >
-          <ion-icon name="heart" size="large" style={{ color: isFavorite ? 'red' : 'black' }}></ion-icon>
+          <ion-icon  onClick={ajouterFav} name="heart" size="large" style={{ color: isFavorite ? 'red' : 'black' }}></ion-icon>
         </div>
       </div>
     </div>

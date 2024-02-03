@@ -31,6 +31,7 @@ function App() {
         <Route path="/home" element={<  Recherche />} />
 
         <Route path="/home/admin" element={<  Pageadmin />} />
+        <Route path="/favoris" element={<  MesFavoris />} />
 
 
       </Routes>
