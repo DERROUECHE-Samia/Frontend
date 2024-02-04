@@ -1,10 +1,10 @@
 import React from "react";
-import Home1 from "./Home1";
-import Home4 from "./Home4";
-import Home3 from "./Home3";
-import Nav from "./Nav";
-import About from "./About";
-import Footer from "./Footer";
+import Home1 from "../components/Home1";
+import Home4 from "../components/Home4";
+import Home3 from "../components/Home3";
+import Nav from "../components/Nav";
+import About from "../components/About";
+import Footer from "../components/Footer";
 
 
 /**
@@ -40,6 +40,7 @@ export default function Home() {
         </section>
         
       </div>
+      <Footer/>
     </>
   );
 }

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import img from "../images/top5.jpeg";
-import Nav2 from "./Nav2";
+import Nav2 from "../components/Nav2";
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 

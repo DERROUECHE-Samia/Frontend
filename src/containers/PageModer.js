@@ -1,8 +1,9 @@
 import React, { useState ,useEffect } from 'react';
-import Nav1 from './Nav1';
-import ArticleModer from './ArticleModer';
+import Nav1 from '../components/Nav1';
+import ArticleModer from '../components/ArticleModer';
+import Footer from "../components/Footer";
 
-import Article from './Article';
+import Article from '../components/Article';
 import {useNavigate } from 'react-router-dom';
 
 const PageModer = () => {
@@ -150,6 +151,7 @@ const PageModer = () => {
           </p>
         )}
       </div>
+      <Footer/>
     </div>
   );
 };

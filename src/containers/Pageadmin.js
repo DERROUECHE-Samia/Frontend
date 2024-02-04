@@ -1,11 +1,12 @@
 import React, { useState ,useEffect } from 'react';
 import {useNavigate } from 'react-router-dom';
+import Footer from "../components/Footer";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import Nav1 from "./Nav1"
-import AjouterModerateur from './AjouterModerateur';
-import AjouterArticle from './AjouterArticle';
+import Nav1 from "../components/Nav1"
+import AjouterModerateur from '../components/AjouterModerateur';
+import AjouterArticle from '../components/AjouterArticle';
 import {useParams } from 'react-router-dom';
 
 /**
@@ -337,6 +338,7 @@ const [S,setS]=useState(-1);
           
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

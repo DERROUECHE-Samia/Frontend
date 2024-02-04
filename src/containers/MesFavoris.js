@@ -1,10 +1,10 @@
 import React from 'react';
-import Titrearticle from './Titrearticle';
+import Titrearticle from '../components/Titrearticle';
 import  { useState ,useEffect} from 'react';
 
 
-import Nav1 from './Nav1';
-import Article from './Article';  
+import Nav1 from '../components/Nav1';
+import Article from '../components/Article';  
 
 /**
  * Composant MesFavoris - Affiche la liste des éléments favoris de l'utilisateur.

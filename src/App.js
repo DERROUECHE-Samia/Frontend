@@ -1,21 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Nav1 from './compenents/Nav1';
-import NavAdmin from './compenents/NavAdmin';
 
-import Recherche from './compenents/Recherche';
-import Home from './compenents/Home';
-import Connexion from './compenents/Connexion';
-import Moderateur from './containers/Moderateur';
-import User from  './containers/User';
-import Admin from './containers/Admin';
-import Inscription from './compenents/Inscription';
-import MesFavoris from './compenents/MesFavoris';
+import Recherche from './containers/Recherche';
+import Home from './containers/Home';
+import Connexion from './containers/Connexion';
+import Inscription from './containers/Inscription';
+import MesFavoris from './containers/MesFavoris';
 import './App.css';
-import ThanksPage from './compenents/ThanksPage';
-import Pageadmin from './compenents/Pageadmin';
-import Parmetres from './compenents/Parametre_compte'
-import PageModer from './compenents/PageModer';
+import ThanksPage from './containers/ThanksPage';
+import Pageadmin from './containers/Pageadmin';
+import Parmetres from './containers/Parametre_compte'
+import PageModer from './containers/PageModer';
 
 function App() {
   return (

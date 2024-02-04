@@ -1,6 +1,7 @@
 import React from "react";
 import img from "../images/top5.jpeg";
-import Nav2 from "./Nav2";
+import Nav2 from "../components/Nav2";
+import Footer from "../components/Footer";
 
 /**
  * Composant de la page de remerciement après l'inscription.
@@ -36,6 +37,7 @@ export default function ThanksPage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

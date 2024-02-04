@@ -23,7 +23,7 @@ const Footer = () => {
       
         <div className=' pr-8 '>
           <h3 className="text-lg font-semibold mb-2">Nous contacter</h3>
-          <p>Email : RTcleByte@gmail.com</p>
+          <p>Email : rtclebitwebsite@gmail.com</p>
           <p>Téléphone : +213 43 23 45 67 89</p>
         </div>
       </div>

@@ -1,12 +1,13 @@
 import React, { useState,useEffect } from "react";
-import Button from "./Button";
-import Nav1 from "./Nav1";
-import "./Modal.css";
+import Button from "../components/Button";
+import Nav1 from "../components/Nav1";
+import "../components/Modal.css";
 import {useNavigate } from 'react-router-dom';
 import {useParams } from 'react-router-dom';
+import Footer from "../components/Footer";
 
 import axios from 'axios';
-import ChangePassword from './ChangePassword';
+import ChangePassword from '../components/ChangePassword';
 
 /**
  * Composant des paramètres du compte.
@@ -288,7 +289,7 @@ const handleUsernameChange = async (e) => {
             </div>
           </div>
         </div>
-      
+      <Footer/>
     </>
   );
 };

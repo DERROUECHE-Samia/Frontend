@@ -2,13 +2,14 @@
 
 
 
+import Footer from "../components/Footer";
 
 import axios from 'axios';
 import React, {createContext, useState, useEffect } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { RiLockPasswordFill } from 'react-icons/ri';
 import img from "../images/top5.jpeg";
-import Nav2 from "./Nav2";
+import Nav2 from "../components/Nav2";
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -432,6 +433,7 @@ nous avons envoyé un e-mail à votre adresse email contenant le code, veuillez 
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     )}
   </>

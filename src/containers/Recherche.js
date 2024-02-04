@@ -1,12 +1,13 @@
-import Titrearticle from './Titrearticle';
+import Titrearticle from '../components/Titrearticle.js';
+import Footer from "../components/Footer";
 
 /**
  * Composant de la barre de recherche avec filtres.
  * @returns {JSX.Element} Composant React.
  */
 import React, { useState ,useEffect} from 'react';
-import Article from './Article.js';
-import Nav1 from './Nav1';
+import Article from '../components/Article.js';
+import Nav1 from '../components/Nav1.js';
 import {useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
@@ -169,6 +170,7 @@ export default function SearchBar() {
 />
       </div>
       ))}
+      <Footer/>
     </>
   );
 }
