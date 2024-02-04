@@ -31,6 +31,7 @@ const Article = ({ article }) => {
         console.log('Information changed successfully');
         alert('Succès');
         navigate(`/home/${type}`);
+        setEditMode(!editMode);
       } else {
         alert('Erreur');
         console.error('Error:', data.detail);
@@ -40,7 +41,7 @@ const Article = ({ article }) => {
     }
   };
   
-  const treatArticle = async (articleId) => {
+  const treatArticle =  async(articleId) => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/treat-article/${articleId}/`, {
         method: 'POST',
@@ -51,6 +52,7 @@ const Article = ({ article }) => {
   
       if (response.ok) {
         console.log('Article treated successfully');
+        alert('succés');
         // Additional logic after successful treatment
       } else {
         const data = await response.json();
@@ -64,8 +66,8 @@ const Article = ({ article }) => {
   };
   
   const handleSave = (id) => {
-    handleEditArticle(id);
     treatArticle(id);
+    handleEditArticle(id)
   };
 
   const handleChange = (e) => {
@@ -246,16 +248,16 @@ const Article = ({ article }) => {
           <div className="flex items-center justify-center">
             <button
               className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none mr-2"
-              onClick={() => handleSave(article.id)}
+              onClick={() => treatArticle(article.id)}
             >
               <FontAwesomeIcon icon={faCheck} className="mr-1" />
             </button>
             {editMode ? (
               <button
-                className="flex items-center justify-center bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none mr-2"
-                onClick={() => setEditMode(false)}
+                className="flex items-center justify-center bg-red-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none mr-2"
+                onClick={() => handleEditArticle(article.id)}
               >
-                <FontAwesomeIcon icon={faTimes} className="mr-1" />
+                <FontAwesomeIcon icon={faEdit} className="mr-1" />
               </button>
             ) : (
               <button

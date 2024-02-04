@@ -26,41 +26,7 @@ const Pageadmin = () => {
     fetchModerators();
     fetchArticles();
   }, []);
-  const handleEditModerateur = async (id,index)=>{
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/api/${type}/${id}/`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: {
-          username: username===u ?"None":username,
-          email: email,
-        },
-        first_name: firstName,
-        family_name: familyName,
-      }),
-    });
 
-    const data = await response.json();
-
-    if (response.ok) {
-      console.log('information changed successfully');
-      alert ('Succées');
-      window.location.reload()
-      // Additional logic after successful password change
-    } else {
-      alert (`erreur`);
-      console.error('error:', data.detail);
-      // Handle error, display message, etc.
-    } 
-    } catch (error) {
-      console.error('Error creating user:', error);
-      alert('erreur');
-    }
- 
-  };
   const handleDeleteModerator = async (id, index) => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/moderateur/${id}`, {
@@ -106,6 +72,7 @@ const Pageadmin = () => {
   const [firstName, setFirstName] = useState("");  
   const [familyName, setFamilyName] = useState("");
   const [articles, setArticles] = useState("");
+  const [url, setUrl] = useState("");
 
   const handleUsernameChange = async (e) => {
       const newUsername = e.target.value;
@@ -145,7 +112,9 @@ const Pageadmin = () => {
       // This part should only execute if there's no navigation in the try block
     }
   };
+ 
   
+
   const handleEmailChange = async (e) => {
       const newEmail = e.target.value;
       setEmail(newEmail);
@@ -163,8 +132,8 @@ const Pageadmin = () => {
         navigate('/unauthorized');
       }
     }
-
-  
+   
+     
   }, [typ,navigate]);
 
   const handlefirstNameChange = (e) => {
@@ -350,7 +319,7 @@ const [S,setS]=useState(-1);
                     <div>
                         <div>
 
-                            <p className='mt-4'> <a href={article.pdf_url} target="_blank" rel="noopener noreferrer">{article.title}</a></p>
+                            <p className='mt-4'> <a href={'C:\Users\ThinkPad\Desktop\TP\articles'+article.pdf_url} target="_blank" rel="noopener noreferrer">{article.title}</a></p>
                         </div>
                     </div>
                 </li>

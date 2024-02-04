@@ -72,10 +72,7 @@ const PageModer = () => {
       alert("error");
     }
   };
-  const Select=(article,id)=>{
-    setSelectedArticle(article);
-    fetchArticlees(id);
-  }
+
   
   const handleArticleClick = (article) => {
     setSelectedArticlee(article);

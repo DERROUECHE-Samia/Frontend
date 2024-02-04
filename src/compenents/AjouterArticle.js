@@ -10,16 +10,73 @@ export default function AjouterArticle() {
 
 
   const [R,setR]=useState(false);
-  const createArticle = async () => {
+  const createArticle = async (url)=>{
+    handlextract(url);
+    handlecreat(url);
+  } 
+  const handlecreat= async(url)=>{
     try {
-      // Perform article creation logic
-      console.log('Article created successfully');
-      alert('Article créé avec succès');
-      navigate('/'); // Redirect to home page after article creation
+      const response = await fetch('http://127.0.0.1:8000/api/extract/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+           
+          
+        pdf_path: url,
+        content: "extracted_text.txt",
+      
+         
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('User created successfully');
+        alert('Article créé avec succès');
+        // Additional logic after successful user creation
+      } else {
+        console.error('Failed to create user:', data.detail);
+        alert('Erreur lors de la création de l\'article');
+        // Handle error, display message, etc.
+      }
     } catch (error) {
       console.error('Error:', error);
-      alert('Erreur lors de la création de l\'article');
-    }
+      // Handle unexpected errors
+    } 
+  };
+  const handlextract= async(url)=>{
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/extract-text/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+           
+          pdf_path: url,
+          content: "extracted_text.txt",
+        
+         
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('User created successfully');
+        // Additional logic after successful user creation
+      } else {
+        console.error('Failed to create user:', data.detail);
+        alert('Erreur lors de la création de l\'article');
+        // Handle error, display message, etc.
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle unexpected errors
+    } 
   };
 
   const handle =()=>
@@ -69,7 +126,7 @@ export default function AjouterArticle() {
               </button>
             <div className='mt-5'>
               <button 
-                onClick={createArticle}
+                onClick={()=>createArticle(url)}
                 className='active:scale-95 active:duration-75 transition-all hover:scale-101 ease-in-out py-2 rounded-xl bg-indigo-600 text-white text-lg font-bold w-full'
               >
                 Créer Article
