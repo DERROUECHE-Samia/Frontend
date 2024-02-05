@@ -73,7 +73,6 @@ const Pageadmin = () => {
   const [firstName, setFirstName] = useState("");  
   const [familyName, setFamilyName] = useState("");
   const [articles, setArticles] = useState("");
-  const [url, setUrl] = useState("");
 
   const handleUsernameChange = async (e) => {
       const newUsername = e.target.value;
@@ -320,7 +319,7 @@ const [S,setS]=useState(-1);
                     <div>
                         <div>
 
-                            <p className='mt-4'> <a href={'C:\Users\ThinkPad\Desktop\TP\articles'+article.pdf_url} target="_blank" rel="noopener noreferrer">{article.title}</a></p>
+                            <p className='mt-4'> {article.title}</p>
                         </div>
                     </div>
                 </li>
@@ -338,7 +337,6 @@ const [S,setS]=useState(-1);
           
         </div>
       </div>
-      <Footer/>
     </div>
   );
 };

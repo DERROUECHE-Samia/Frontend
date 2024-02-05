@@ -122,7 +122,6 @@ const Article = ({ article }) => {
   };
 
   useEffect(() => {
-    fetchArticle();
   }, []);
 
   return (

@@ -33,7 +33,7 @@ function MesFavoris() {
   };
 
     return (
-      <div className='mt-10'>
+      <div className='mt-14'>
     <Nav1 user={{ name: 'derr', fullName: 'John Doe' , mail:'john@gmail.com'}}/>
 
         <div className="container mx-auto p-4">
@@ -47,7 +47,7 @@ function MesFavoris() {
 <Titrearticle
 article={{
   id:article.id,
-titre: article.title,
+title: article.title,
 auteur: article.authors.map((author, index) => <span key={index}>{author.name}, </span>),
 institutions: article.institutions.map((institution, index) => <span key={index}>{institution.name}, </span>),
 resume: article.abstract,

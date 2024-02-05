@@ -151,7 +151,6 @@ const PageModer = () => {
           </p>
         )}
       </div>
-      <Footer/>
     </div>
   );
 };

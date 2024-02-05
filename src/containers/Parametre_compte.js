@@ -289,7 +289,6 @@ const handleUsernameChange = async (e) => {
             </div>
           </div>
         </div>
-      <Footer/>
     </>
   );
 };

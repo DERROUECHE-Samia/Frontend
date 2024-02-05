@@ -13,7 +13,7 @@ const Titrearticle = ({ article }) => {
             <div className="pr-4 pb-4 md:pr-0 flex items-center">
                 <div className="flex-1">
                     <div className="pt-4 font-bold font-serif text-2xl">
-                        {article.titre} 
+                        {article.title} 
                         {Article.abstract}
                     </div>
                 </div>
@@ -30,14 +30,13 @@ const Titrearticle = ({ article }) => {
                 <Article
                     article={{
                         id:article.id,
-                        titre:article.titre,
-                        auteur:article.auteur,
-                        institution: article.institution,
-                        resume:article.resume,
-                        motcle: article.motcle,
-                        reference: article.reference,
-                        pdf: article.pdf,
-                        textuel: article.textuel
+                        titre: article.titre,
+                        abstract: article.abstract,
+                        authors_names:article.authors_names,
+                        institutions_names: article.institutions_names,
+                        keywords_names: article.keywords_names,
+                        text:article.text,
+                        pdf_url:article.pdf_url,
                     }}
                 />
             )}

@@ -158,19 +158,17 @@ export default function SearchBar() {
 <Titrearticle
   article={{
     id:article.id,
-    titre: article.title,
-    auteur: article.authors.map((author, index) => <span key={index}>{author.name}, </span>),
-    institutions: article.institutions.map((institution, index) => <span key={index}>{institution.name}, </span>),
-    resume: article.abstract,
-    motsCles: article.keywords.map((keyword, index) => <span key={index}>{keyword.name}, </span>),
-    references: article.references.map((reference, index) => <span key={index}>{reference.citation}, </span>),
-    pdf: article.pdf_url,
-    textuel: article.textuel,
+    title: article.title,
+    abstract: article.abstract,
+    authors_names:article.authors_names,
+    institutions_names: article.institutions_names,
+    keywords_names: article.keywords_names,
+    text:article.text,
+    pdf_url:article.pdf_url,
   }}
 />
       </div>
       ))}
-      <Footer/>
     </>
   );
 }
